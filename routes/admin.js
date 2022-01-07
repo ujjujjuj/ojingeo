@@ -1,15 +1,32 @@
 const express = require("express");
-const isLoggedIn = require("../middleware/isLoggedIn")
-const isFrontman = require("../middleware/isFrontman")
+const isLoggedIn = require("../middleware/isLoggedIn");
+const isFrontman = require("../middleware/isFrontman");
+const Player = require("../models/Player");
 
 const router = express.Router();
 
-router.use("/",isLoggedIn)
-router.use("/",isFrontman)
+router.use("/", isLoggedIn);
+router.use("/", isFrontman);
 
-router.get("/", (req, res) => {
-    console.log(req.user);
-    return res.send("dash")
-})
+router.get("/players", async (req, res) => {
+    const players = await Player.find({});
+    console.log(players);
+    return res.send("players")
+});
+
+router.post("/player/new",async (req,res) => {
+
+});
+
+router.post("/player/edit",async (req,res) => {
+
+});
+
+router.get("/players", (req, res) => {
+    return res.send("players")
+});
+router.get("/players", (req, res) => {
+    return res.send("players")
+});
 
 module.exports = router;

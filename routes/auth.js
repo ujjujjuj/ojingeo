@@ -1,5 +1,4 @@
 const express = require("express");
-const axios = require("axios");
 const User = require("../models/User");
 const crypto = require("crypto");
 
@@ -11,7 +10,7 @@ router.get("/login", (req, res) => {
 
 router.get("/logout", (req, res) => {
     res.cookie("auth", "goodybe", { maxAge: 0, signed: true });
-    res.redirect("/auth")
+    res.redirect("/auth/login")
 });
 
 router.get("/register", (req, res) => {
