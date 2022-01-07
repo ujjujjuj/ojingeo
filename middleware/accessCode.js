@@ -5,7 +5,7 @@ module.exports = (req, res, next) => {
 
     if (req.body.accessCode == code) {
         res.cookie("accessCode", code, { maxAge: 1000 * 60 * 99999 }); // TODO: change expiry to 30 min
-        res.redirect("/");
+        res.redirect("/login");
     } else if (req.body.accessCode) {
         res.render("accessCode", { "error": "invalid code" });
     } else {

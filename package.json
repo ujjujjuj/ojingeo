@@ -1,5 +1,5 @@
 {
-  "name": "iitg-2021",
+  "name": "ojingeo",
   "version": "1.0.0",
   "description": "",
   "main": "app.js",
@@ -10,7 +10,6 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "axios": "^0.24.0",
     "body-parser": "^1.19.1",
     "cookie-parser": "^1.4.6",
     "dotenv": "^10.0.0",
