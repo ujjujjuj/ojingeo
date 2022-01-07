@@ -1,0 +1,74 @@
+{
+    "columns": {
+        "uuid": [
+            "08904843-94f1-4243-9452-f484e7443f34",
+            "5137736f-3d2d-4f5a-9743-370026962762",
+            "2cb07be2-356b-4b31-b1d6-76cd064d27d2",
+            "a70b1427-6e5f-4bfc-b3b4-6e2a432d9aac",
+            "f277b585-dc53-472c-9c4a-ea51f924a2ae",
+            "9ecb1ba7-1ae3-4ab2-81c1-bc767cfbb023"
+        ],
+        "game_no": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6
+        ],
+        "name": [
+            "Red light, green light",
+            "Sugar Honeycombs",
+            "Tug of War",
+            "Marbles",
+            "Hopscotch",
+            "Squid Game"
+        ],
+        "description": [
+            "The first game in the Squid Game is played by children all around the world. It’s the type of game that, the bigger the group, the better It gets. In Red Light, Green Light, a predetermined area is set and while one player (the leader) stands in one end, with their back turned to the rest of the group, all the others can move. The lone player chants “red light, green light, one two three”, and everyone can move. When they get to “three”, however, everyone has to freeze. If anyone is caught moving, they’re either out or have to go back to the starting line. The game is simple, and you just have to move from point A to point B without being “seen”, but rules vary. In most cases, the ultimate goal is to get past the leader when their back is turned. In others, you have to touch the tree in which the leader is leaning without being caught moving.",
+            "In this game, each player gets a circular tin that can be opened up to reveal a sugar honeycomb with one of four different shapes modelled into it: a circle, a triangle, a star or an umbrella. Armed with nothing but a needle, the players have to carve out the shapes without breaking their design – if the shape doesn’t come out whole, the player is killed.",
+            "the tug of war challenges each group of players into using all their strength and the best of their skills to make the other group fall to their death. There is only one rule: pulling on a thick rope to make the opposing team fall past the center mark. In order to make that happen, anything goes: psyching out the adversary group, pulling with all your strength, and other techniques.",
+            "Each player is given a bag containing ten marbles and then they are all divided in pairs. The goal is to win every marble your opponent has, but, as they quickly figure out, that between themselves and the person they chose to pair up with (usually the person they have become closest to), one of them will die.",
+            "Players have to jump their way through a bridge that has two glass squares side by side. While one glass square is tempered and will hold up to two players at a time, the square beside it is fragile and whoever jumps on it falls to their death. The “fun” part is figuring out which is which in sixteen minutes or less.",
+            "The game is played by drawing a square, a triangle and two circles on the ground (the same shapes seen throughout the whole series) and has two teams trying to invade each other’s space. The tricky part is: you can’t touch any lines and must hop on one foot on most areas. Of course, players will try their best to make you fall along the way."
+        ]
+    },
+    "rows": [
+        {
+            "uuid": "08904843-94f1-4243-9452-f484e7443f34",
+            "game_no": 1,
+            "name": "Red light, green light",
+            "description": "The first game in the Squid Game is played by children all around the world. It’s the type of game that, the bigger the group, the better It gets. In Red Light, Green Light, a predetermined area is set and while one player (the leader) stands in one end, with their back turned to the rest of the group, all the others can move. The lone player chants “red light, green light, one two three”, and everyone can move. When they get to “three”, however, everyone has to freeze. If anyone is caught moving, they’re either out or have to go back to the starting line. The game is simple, and you just have to move from point A to point B without being “seen”, but rules vary. In most cases, the ultimate goal is to get past the leader when their back is turned. In others, you have to touch the tree in which the leader is leaning without being caught moving."
+        },
+        {
+            "uuid": "5137736f-3d2d-4f5a-9743-370026962762",
+            "game_no": 2,
+            "name": "Sugar Honeycombs",
+            "description": "In this game, each player gets a circular tin that can be opened up to reveal a sugar honeycomb with one of four different shapes modelled into it: a circle, a triangle, a star or an umbrella. Armed with nothing but a needle, the players have to carve out the shapes without breaking their design – if the shape doesn’t come out whole, the player is killed."
+        },
+        {
+            "uuid": "2cb07be2-356b-4b31-b1d6-76cd064d27d2",
+            "game_no": 3,
+            "name": "Tug of War",
+            "description": "the tug of war challenges each group of players into using all their strength and the best of their skills to make the other group fall to their death. There is only one rule: pulling on a thick rope to make the opposing team fall past the center mark. In order to make that happen, anything goes: psyching out the adversary group, pulling with all your strength, and other techniques."
+        },
+        {
+            "uuid": "a70b1427-6e5f-4bfc-b3b4-6e2a432d9aac",
+            "game_no": 4,
+            "name": "Marbles",
+            "description": "Each player is given a bag containing ten marbles and then they are all divided in pairs. The goal is to win every marble your opponent has, but, as they quickly figure out, that between themselves and the person they chose to pair up with (usually the person they have become closest to), one of them will die."
+        },
+        {
+            "uuid": "f277b585-dc53-472c-9c4a-ea51f924a2ae",
+            "game_no": 5,
+            "name": "Hopscotch",
+            "description": "Players have to jump their way through a bridge that has two glass squares side by side. While one glass square is tempered and will hold up to two players at a time, the square beside it is fragile and whoever jumps on it falls to their death. The “fun” part is figuring out which is which in sixteen minutes or less."
+        },
+        {
+            "uuid": "9ecb1ba7-1ae3-4ab2-81c1-bc767cfbb023",
+            "game_no": 6,
+            "name": "Squid Game",
+            "description": "The game is played by drawing a square, a triangle and two circles on the ground (the same shapes seen throughout the whole series) and has two teams trying to invade each other’s space. The tricky part is: you can’t touch any lines and must hop on one foot on most areas. Of course, players will try their best to make you fall along the way."
+        }
+    ]
+}
