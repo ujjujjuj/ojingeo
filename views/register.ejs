@@ -6,13 +6,74 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Register</title>
+    <base href="/">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Oxygen:wght@300;400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="./css/style.css">
+    <style>
+ body{
+    background-color: #1A1A1A;
+    box-sizing: content-box;
+}
+h1{
+    text-align: center;
+    color: white;
+    font-size: 50px;
+    font-family: 'Game Of Squids';
+    margin-top: 150px;
+    font-weight: normal;
+    font-style: normal;
+}
+
+form{
+    display: flex;
+    flex-direction: column;
+    margin-top: 60px;
+    justify-content: center;
+    align-items: center;
+}
+
+input[type=text]{
+    padding: 15px 10px;
+    width: 245px;
+    border-radius: 6px;
+    text-decoration: none;
+    border: none;
+}
+
+input[type=password]{
+    padding: 15px 10px;
+    width: 245px;
+    border-radius: 6px;
+    margin-top: 15px;
+    text-decoration: none;
+    border: none;
+}
+
+textarea:focus, input:focus{
+    outline: none;
+}
+
+input[type=submit]{
+    background-color: #ff6489;
+    border: none;
+    border-radius: 6px;
+    color: white;
+    padding: 15px 20px;
+    font-family: 'Oxygen';
+    margin-top: 25px;
+    width: 265px;
+}
+    </style>
 </head>
 
 <body>
+    <h1>Squid Game</h1>
     <form method="post">
-        <input type="text" name="username" placeholder="username"><br>
-        <input type="password" name="password" placeholder="password"><br>
-        <input type="submit" placeholder="Login">
+        <input type="text" name="username" placeholder="username" required>
+        <input type="password" name="password" placeholder="password" required>
+        <input type="submit" value="Register">
     </form>
     <% if(locals.error){ %>
         <%= error %>

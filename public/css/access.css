@@ -1,0 +1,44 @@
+body{
+    background-color: #1A1A1A;
+    box-sizing: content-box;
+}
+h1{
+    text-align: center;
+    color: white;
+    font-size: 50px;
+    font-family: 'Game Of Squids';
+    margin-top: 150px;
+    font-weight: normal;
+    font-style: normal;
+}
+
+form{
+    display: flex;
+    flex-direction: column;
+    margin-top: 60px;
+    justify-content: center;
+    align-items: center;
+}
+
+input[type=text]{
+    padding: 15px 10px;
+    width: 245px;
+    border-radius: 6px;
+    text-decoration: none;
+    border: none;
+}
+
+textarea:focus, input:focus{
+    outline: none;
+}
+
+input[type=submit]{
+    background-color: #ff6489;
+    border: none;
+    border-radius: 6px;
+    color: white;
+    padding: 15px 20px;
+    font-family: 'Oxygen';
+    margin-top: 27px;
+    width: 265px;
+}

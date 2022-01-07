@@ -1,0 +1,16 @@
+@font-face {
+    font-family: 'Game Of Squids';
+    src: url('fonts/GameOfSquids.eot');
+    src: url('fonts/GameOfSquids.eot?#iefix') format('embedded-opentype'),
+        url('fonts/GameOfSquids.woff2') format('woff2'),
+        url('fonts/GameOfSquids.woff') format('woff'),
+        url('fonts/GameOfSquids.ttf') format('truetype'),
+        url('fonts/GameOfSquids.svg#GameOfSquids') format('svg');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+textarea:focus, input:focus{
+    outline: none;
+}

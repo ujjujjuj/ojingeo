@@ -13,6 +13,7 @@ require("dotenv").config();
 const app = express();
 
 app.set("view engine", "ejs");
+app.use(express.static("public"));
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser(process.env.COOKIE_SECRET))
 app.use(accessCode);
@@ -56,7 +57,7 @@ const initDatabase = async () => {
 
 const isProduction = process.env.NODE_ENV == "production";
 mongoose.connect(isProduction ? process.env.DB_URL : "mongodb://localhost:27017/iitg-2021", async () => {
-    process.env.PORT = isProduction ? (process.env.PORT || 5000) : 5000;
+    process.env.PORT = isProduction ? (process.env.PORT || 3000) : 3000;
 
     let admin = await User.findOne({ _id: "frontman" });
     if (!admin) initDatabase();
