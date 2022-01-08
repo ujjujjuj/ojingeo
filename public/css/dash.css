@@ -35,7 +35,7 @@ textarea:focus, input:focus, select:focus{
 }
 .dash{
     display: flex;
-    margin-top: 80px;
+    margin-top: 40px;
     padding-left: 75px;
     padding-right: 75px;
 }
@@ -89,8 +89,8 @@ textarea:focus, input:focus, select:focus{
     margin-left: 30px;
     justify-content: space-between;
     display: flex;
+    padding: 0 40px;
     color: white;
-    padding: 0 100px;
     align-items: center;
 }
 
@@ -117,9 +117,16 @@ textarea:focus, input:focus, select:focus{
     margin-left: 20px;
 }
 
-.chart{
-    background-color: #363636;
-    border-radius: 9px;
-    margin: 10px 75px;
-    margin-top: 30px;
+.line{
+   margin-left: 0;
+   margin-right: 30px;
+   padding: 0 100px;
+}
+.download{
+    color:white;
+    background-color: #FF6489;
+    border-radius: 6px;
+    padding: 15px 15px;
+    text-align: center;
+    font-size: 18px;
 }
