@@ -49,7 +49,7 @@ router.post("/register", async (req, res) => {
     user = new User({
         _id: req.body.username,
         password: hashedPassword,
-        walletAddress: walletAddress
+        walletAddress: req.body.walletAddress
     });
     try {
         await user.save();

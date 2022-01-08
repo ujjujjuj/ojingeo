@@ -48,26 +48,20 @@ router.get("/downloadinfo", async (req, res) => {
     if (!currentGame) {
         filePath = __dirname + "/../data/final.csv"
         // games are over
-        if (!fs.existsSync(filePath)) {
-            // create file
-            filedata = "ID,Name,Date of Birth,Occupation,Address,Debt,Games Completed,Photo\n"
-            for (let player of players) {
-                let gamesCompleted = player.isEliminated == 0 ? currentGame.game_no : player.isEliminated - 1;
-                filedata += `${player._id},${player.name},${player.dob},${player.occupation},"${player.address}",${player.debt},${gamesCompleted},${player.pfp}\n`
-            }
-            fs.writeFileSync(filePath, filedata);
+        filedata = "ID,Name,Date of Birth,Occupation,Address,Debt,Games Completed,Photo\n"
+        for (let player of players) {
+            let gamesCompleted = player.isEliminated == 0 ? currentGame.game_no : player.isEliminated - 1;
+            filedata += `${player._id},${player.name},${player.dob},${player.occupation},"${player.address}",${player.debt},${gamesCompleted},${player.pfp}\n`
         }
+        fs.writeFileSync(filePath, filedata);
     } else {
         filePath = __dirname + `/../data/game-${currentGame.game_no}.csv`;
-        if (!fs.existsSync(filePath)) {
-            // create file
-            filedata = "ID,Name,Date of Birth,Occupation,Address,Debt,Games Completed,Photo\n"
-            for (let player of players) {
-                let gamesCompleted = player.isEliminated == 0 ? currentGame.game_no : player.isEliminated - 1;
-                filedata += `${player._id},${player.name},${player.dob},${player.occupation},"${player.address}",${player.debt},${gamesCompleted},${player.pfp}\n`
-            }
-            fs.writeFileSync(filePath, filedata);
+        filedata = "ID,Name,Date of Birth,Occupation,Address,Debt,Games Completed,Photo\n"
+        for (let player of players) {
+            let gamesCompleted = player.isEliminated == 0 ? currentGame.game_no : player.isEliminated - 1;
+            filedata += `${player._id},${player.name},${player.dob},${player.occupation},"${player.address}",${player.debt},${gamesCompleted},${player.pfp}\n`
         }
+        fs.writeFileSync(filePath, filedata);
     }
     return res.download(filePath);
 });
@@ -134,7 +128,7 @@ router.post("/worker/edit", async (req, res) => {
 
 router.get("/games", async (req, res) => {
     const players = await Player.find({}, { isEliminated: 1 });
-    const games = await Game.find({});
+    const currentGame = await Game.findOne({isCurrentGame:true});
 
     // if (!currentGame) currentGame = { game_no: 0 };
 
@@ -146,17 +140,18 @@ router.get("/games", async (req, res) => {
             deathsPerRound[player.isEliminated - 1] += 1;
         }
     }
-    let mortalityRates = [];
+    let mortalityRate = [];
     let _players = totalPlayers;
     for (let i = 0; i < deathsPerRound.length; i++) {
-        mortalityRates.push(deathsPerRound[i] / _players);
+        mortalityRate.push(100 * deathsPerRound[i] / _players);
         _players -= deathsPerRound[i];
     }
+    let playersDead = deathsPerRound.reduce((a, b) => a + b);
 
-    return res.render("frontmanGames", { data: { deathsPerRound, games, totalPlayers, mortalityRates } })
+    return res.render("frontmanGames", { playersDead, currentGame, mortalityRate })
 });
 
-router.post("/games/next", async (req, res) => {
+router.get("/games/next", async (req, res) => {
     const lastGame = await Game.findOne({ isCurrentGame: true });
     const users = await User.find({});
 
@@ -182,7 +177,7 @@ router.post("/games/next", async (req, res) => {
         }
     }
 
-    return res.redirect(req.originalUrl);
+    return res.redirect("/frontman/games");
 });
 
 module.exports = router;
