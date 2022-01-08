@@ -19,21 +19,25 @@ const initDatabase = async () => {
     for (let i = 0; i < players.rows.length; i++) {
         let firstName = players.rows[i].name.split(" ")[0];
         // let gender = ["men","women"][Math.floor(Math.random()*2)]
-        let gender = ["a", "e", "i", "o", "u"].includes(firstName[firstName.length - 1]) ? "women" : "men";  // statistics :thumbsup: 
-        const record = new Player({ _id: i + 1, ...players.rows[i], pfp: `https://randomuser.me/api/portraits/${gender}/${i % 100}.jpg` });
-        await record.save()
+        let gender = ["a", "e", "i", "o", "u"].includes(firstName[firstName.length - 1]) ? "female" : "male";  // statistics :thumbsup: 
+
+        const record = new Player({ _id: i + 1, ...players.rows[i], pfp: `https://randomuser.me/api/portraits/${gender == "male" ? "men" : "women"}/${i % 100}.jpg`, gender: gender });
+        await record.save();
     }
 
     const games = require("./data/games.json");
     for (let i = 0; i < games.rows.length; i++) {
         const record = new Game({ _id: games.rows[i].uuid, ...games.rows[i] });
         if (i == 0) record.isCurrentGame = true;
-        await record.save()
+        await record.save();
     }
 
-    const workers = require("./data/workers.json")
+    const workers = require("./data/workers.json");
+    const tasksArray = ["Disposal", "Maintenance", "Food Distribution", "Elimination", "Patrol", "Venue Preparation"];
+    const rolesArray = ["Manager", "Guard", "Utility"]
     for (let i = 1; i <= workers.rows.length; i++) {
-        const record = new Worker({ ...workers.rows[i], role: Math.floor(Math.random() * 3) });
+        let task = tasksArray[Math.floor(Math.random() * tasksArray.length)];
+        const record = new Worker({ ...workers.rows[i], role: Math.floor(Math.random() * 3), task: task, _id: i });
         await record.save()
     }
 
