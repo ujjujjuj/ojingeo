@@ -31,7 +31,11 @@ router.post("/login", async (req, res) => {
     }
 
     res.cookie("auth", req.body.username, { signed: true, maxAge: 1000 * 60 * 60 * 48 });
-    return res.redirect("/");
+    if (user.isFrontman) {
+        return res.redirect("/frontman")
+    } else {
+        return res.redirect("/");
+    }
 })
 
 

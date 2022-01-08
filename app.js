@@ -2,7 +2,6 @@ const express = require("express");
 const cookieParser = require("cookie-parser");
 const bodyParser = require("body-parser");
 const accessCode = require("./middleware/accessCode.js");
-
 const db = require("./db")
 require("dotenv").config();
 
@@ -15,12 +14,8 @@ app.use(cookieParser(process.env.COOKIE_SECRET));
 app.use(accessCode);
 
 app.use("/auth", require("./routes/auth.js"));
-app.use("/", require("./routes/dash.js"));
-app.use("/admin", require("./routes/admin.js"));
-
-app.get("/", (req, res) => {
-    return res.send("index");
-});
+app.use("/frontman", require("./routes/frontman.js"));
+app.use("/", require("./routes/vip.js"));
 
 const isProduction = process.env.NODE_ENV == "production";
 if (!process.env.PORT) process.env.PORT = isProduction ? 80 : 3000;
