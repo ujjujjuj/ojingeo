@@ -66,7 +66,7 @@ router.get("/downloadInfo", async (req, res) => {
 router.get("/players", async (req, res) => {
     const players = await Player.find({});
     // console.log(players);
-    return res.render(players,{data:players})
+    return res.render("players",{data:players});  
 });
 
 router.post("/player/new", async (req, res) => {
@@ -93,7 +93,7 @@ router.post("/player/delete", async (req, res) => {
 
 router.get("/workers", async (req, res) => {
     const workers = await Worker.find({});
-    return res.send(workers)
+    return res.render('staff',{data:workers});
 });
 
 router.get("/games", async (req, res) => {
