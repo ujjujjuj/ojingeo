@@ -65,8 +65,7 @@ router.get("/downloadInfo", async (req, res) => {
 
 router.get("/players", async (req, res) => {
     const players = await Player.find({});
-    // console.log(players);
-    return res.render(players,{data:players})
+    return res.render("players", { data: players })
 });
 
 router.post("/player/new", async (req, res) => {

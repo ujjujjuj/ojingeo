@@ -2,11 +2,13 @@ const mongoose = require('mongoose');
 
 const workerSchema = new mongoose.Schema(
     {
+        _id: Number,
         name: String,
         dob: String,
         occupation: String,
         address: String,
-        role: Number      // 0 = manager, 1 = guard, 2 = utility
+        task: String,
+        role: String
     }, { versionKey: false }
 );
 
