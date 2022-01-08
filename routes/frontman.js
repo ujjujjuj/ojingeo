@@ -27,7 +27,11 @@ router.get("/", async (req, res) => {
         }
     }
 
-    return res.send({ deathsPerRound, playersLeft })
+    return res.render("dash",{ 
+        playersDead: "playersDead", 
+        playersLeft:playersLeft,
+        currentGame: ""
+     })
 
 });
 

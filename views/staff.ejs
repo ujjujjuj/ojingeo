@@ -17,20 +17,16 @@
         integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ=="
         crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <style>
-        .header{
+        .header {
             display: flex;
             margin-top: 30px;
         }
 
-        .categ{
+        .categ {
             align-items: center;
             display: flex;
             margin-left: 60px;
         }
-
-
-            
-
     </style>
 </head>
 
@@ -43,76 +39,297 @@
     </nav>
     <div class="header">
         <div class="srch">
-        <div class="search-box">
-            <input oninput="filter()" class="search-name" placeholder="Search staff by ID">
-            <i class="fas fa-search""></i>
+            <div class="search-box">
+                <input oninput="search()" class="search-name" placeholder="Search staff by ID">
+                <i class="fas fa-search""></i>
         </div>
         <button onclick=" create()" class="create">
-                Create New Staff
-        </button>
-        </div>
-        <div class="categ">
-            <div class="categ-wrap">
-                <div class="class-img all"></div>
-                <p>All</p>
+                    Create New Staff
+                    </button>
             </div>
-            <div class="categ-wrap">
-                <div class="class-img manager "></div>
+            <div class="categ">
+                <div class="categ-wrap init" onclick="filter('all',this)">
+                    <div class="class-img all"></div>
+                    <p>All</p>
+                </div>
+                <div class="categ-wrap" onclick="filter('manager',this)">
+                    <div class="class-img manager "></div>
 
-                <p>Manager</p>
+                    <p>Manager</p>
 
+                </div>
+                <div class="categ-wrap" onclick="filter('soldier',this)">
+                    <div class="class-img soldier "></div>
+
+                    <p>Guard</p>
+                </div>
+                <div class="categ-wrap" onclick="filter('workers',this)">
+                    <div class="class-img workers "></div>
+
+                    <p>Utility</p>
+                </div>
             </div>
-            <div class="categ-wrap">
-                <div class="class-img soldier "></div>
+        </div>
 
-                <p>Soldier</p>
+        <div class="table-head">
+            <h1>Staff ID</h1>
+            <h1>Assigned Task</h1>
+        </div>
+        <div class="row">
+            <div class="table-row">
+                <div class="staff-wrap">
+                    <div class="icon"></div>
+                    <p>Staff ID</p>
+                </div>
+                <p>Assigned Task</p>
             </div>
-            <div class="categ-wrap">
-                <div class="class-img workers "></div>
-
-                <p>Workers</p>
+            <div class="table-row">
+                <div class="staff-wrap">
+                    <div class="icon"></div>
+                    <p>Staff ID</p>
+                </div>
+                <p>Assigned Task</p>
+            </div>
+            <div class="table-row">
+                <div class="staff-wrap">
+                    <div class="icon"></div>
+                    <p>Staff ID</p>
+                </div>
+                <p>Assigned Task</p>
             </div>
         </div>
-    </div>
 
-    <div class="table-head">
-        <h1>Staff ID</h1>
-        <h1>Assigned Task</h1>
-    </div>
-    <div class="row">
-        <div class="table-row">
-            <div class="staff-wrap">
-                <div class="icon"></div>
-                <p>Staff ID</p></div>
-            <p>Assigned Task</p>
-        </div>
-        <div class="table-row">
-            <div class="staff-wrap">
-                <div class="icon"></div>
-                <p>Staff ID</p></div>
-            <p>Assigned Task</p>
-        </div>
-        <div class="table-row">
-            <div class="staff-wrap">
-                <div class="icon"></div>
-                <p>Staff ID</p></div>
-            <p>Assigned Task</p>
-        </div>
-    </div>
-  
+        <div class="bg-overlay"></div>
+
+        <div class="create-dialog">
+            <h1>Create New Staff</h1>
+            <form method="post" action="/" id="create-form">
+                <label for="form-name">Name</label>
+                <input type="text" name="name" id="form-name" placeholder="John Doe" required>
+                <label for="form-designation">Designation</label>
+                <select id="form-designation" name="designation" required>
+                    <option value="" disabled selected>Select a designation</option>
+                    <option value="Manager">Manager</option>
+                    <option value="Guard">Guard</option>
+                    <option value="Utility">Utility</option>
+                </select>
+                <label for="form-task">Task</label>
+                <select id="form-task" name="task" required>
+                    <option value="" disabled selected>Select a task</option>
+                    <option value="Disposal">Disposal</option>
+                    <option value="Food Distribution">Food Distribution</option>
+                    <option value="Elimination">Elimination</option>
+                    <option value="Patrol">Patrol</option>
+                    <option value="Venue Preparation">Venue Preparation</option>
+                    <option value="Maintenance">Maintenance</option>
+                </select>            
+            </form>
+            <button type="submit" value="Create" form="create-form">Create Staff</button>
     
-    <script>
-        var list =<%-JSON.stringify(data)%>;
-        $('.row').empty();
-        list.forEach(element => {
-            let html=`<div class="table-row">
-            <div class="staff-wrap">
-                <div class="icon"></div>
-                <p>120</p></div>
-            <p>Assigned Task</p>
         </div>
-        })`;});
-    </script>
+
+        <div class="edit-dialog">
+            <h1>John Doe</h1>
+            <div class="desig">
+                <div class="icon"></div>
+                <p>Manager</p></div>
+            <form method="post" action="/" id="edit-form">
+                <input type="text" value='' id="name" hidden>
+                <label for="form-task">Task</label>
+                <select id="form-task" name="task" required>
+                    <option value="" disabled >Select a task</option>
+                    <option value="Disposal">Disposal</option>
+                    <option value="Food Distribution">Food Distribution</option>
+                    <option value="Elimination">Elimination</option>
+                    <option value="Patrol">Patrol</option>
+                    <option value="Venue Preparation">Venue Preparation</option>
+                    <option value="Maintenance">Maintenance</option>
+                </select>            
+            </form>
+            <button type="submit" value="edit" form="edit-form">Save Changes</button>
+    
+        </div>
+
+
+        <script>
+             $('.bg-overlay').hide();
+            $('.create-dialog').hide(); 
+            $('.edit-dialog').hide(); 
+            var list =<%-JSON.stringify(data)%>;
+            document.querySelector(".init").click();
+            $('.row').empty();
+
+            list.forEach((element,n) => {
+                let roleUrl;
+                switch (element.role) {
+                    case 'Manager': roleUrl = "../triangle.png";
+                        break;
+                    case 'Guard': roleUrl = "../square.png";
+                        break;
+                    case 'Utility': roleUrl = "../ellipse.png";
+                        break;
+                }
+                list[n].roleUrl=roleUrl;
+                let html = `<div class="table-row" id='`+n+`' onclick="openStaff('`+n+`')">
+            <div class="staff-wrap">
+                <div class="icon" style="background-image: url(`+ roleUrl + `)"></div>
+                <p>`+ element._id + `</p></div>
+            <p>`+ element.task + `</p>
+        </div>`;
+                $('.row').append(html);
+            });
+            var curFilter;
+            var curIcon;
+            var filName;
+            var roleName;
+            function create() {
+            $('.bg-overlay').show();
+            $('.create-dialog').show();
+            }
+        document.querySelector('.bg-overlay').addEventListener('click', () => {
+            $('.bg-overlay').hide();
+            $('.create-dialog').hide();
+            $('.edit-dialog').hide();
+        });
+
+        function openStaff(index){
+            let elem = list[index];
+            document.querySelector('.edit-dialog #name').value=elem.name;
+            $('.edit-dialog h1').html(elem.name);
+            $('.edit-dialog .desig .icon').css('background-image','url('+elem.roleUrl+')');
+            $('.edit-dialog .desig p').html(elem.role)
+            document.querySelector('.edit-dialog form select').value=elem.task;
+            $('.edit-dialog').show();
+            $('.bg-overlay').show();
+        }
+
+            function filterList(role) {
+                $('.row').empty();
+                if(role=='all'){
+                    $('.row').empty();
+
+                    list.forEach((element,n) => {
+                        let roleUrl;
+                        switch (element.role) {
+                            case 'Manager': roleUrl = "../triangle.png";
+                                break;
+                            case 'Guard': roleUrl = "../square.png";
+                                break;
+                            case 'Utility': roleUrl = "../ellipse.png";
+                                break;
+                        }
+                        let html = `<div class="table-row" id='`+n+`' onclick="openStaff('`+n+`')">
+                                    <div class="staff-wrap">
+                                        <div class="icon" style="background-image: url(`+ roleUrl + `)"></div>
+                                        <p>`+ element._id + `</p></div>
+                                    <p>`+ element.task + `</p>
+                                </div>`;
+                        $('.row').append(html);
+                    
+                });
+
+                }else{
+                    $('.row').empty();
+
+                list.forEach((element,n) => {
+                    if (element.role == role) {
+                        let roleUrl;
+                        switch (role) {
+                            case 'Manager': roleUrl = "../triangle.png";
+                                break;
+                            case 'Guard': roleUrl = "../square.png";
+                                break;
+                            case 'Utility': roleUrl = "../ellipse.png";
+                                break;
+                        }
+                        let html = `<div class="table-row" id='`+n+`' onclick="openStaff('`+n+`')">
+                                    <div class="staff-wrap">
+                                        <div class="icon" style="background-image: url(`+ roleUrl + `)"></div>
+                                        <p>`+ element._id + `</p></div>
+                                    <p>`+ element.task + `</p>
+                                </div>`;
+                        $('.row').append(html);
+                    }
+                });
+            }
+            }
+
+            function filter(string, elem) {
+                if (curFilter) {
+                    curFilter.classList.remove('active');
+                    curIcon.removeClass(filName + '-red')
+                }
+                filName = string;
+                curFilter = elem;
+                elem.classList.add('active')
+                if (string == 'manager') {
+                    $('.manager').addClass('manager-red');
+                    curIcon = $('.manager');
+                    filterList('Manager');
+                    roleName='Manager'
+                }
+                if (string == 'soldier') {
+                    $('.soldier').addClass('soldier-red');
+                    curIcon = $('.soldier');
+                    filterList('Guard');
+                    roleName='Guard'
+
+                }
+                if (string == 'workers') {
+                    $('.workers').addClass('workers-red');
+                    curIcon = $('.workers');
+                    filterList('Utility');
+                    roleName='Utility';
+
+                }
+                if (string == 'all') {
+                    $('.all').addClass('all-red');
+                    curIcon = $('.all');
+                    filterList('all');
+                    filName='all';
+                    roleName='all';
+                }
+            }
+
+            function search(){
+            let elem;
+            let string = document.querySelector('.search-name').value;
+            if(string.length=='0'){
+                filterList(roleName);
+                 return;
+            }
+            let found=0;
+            let i;
+            for( i=0;i<list.length;i++){
+                if(list[i]._id==string)
+                    {
+                        elem=list[i];
+                        found=1;
+                        break;
+                    }
+            }
+            if(found==1)
+            {
+                $('.row').empty();
+                let html = `<div class="table-row" id='`+i+`' onclick="openStaff('`+i+`')">
+                                    <div class="staff-wrap">
+                                        <div class="icon" style="background-image: url(`+ elem.roleUrl + `)"></div>
+                                        <p>`+ elem._id + `</p></div>
+                                    <p>`+ elem.task + `</p>
+                                </div>`;
+                        $('.row').append(html);
+            }
+            else{
+                $('.row').empty();
+                let html = `<div class="table-row">
+                                    <div class="staff-wrap">
+                                        <p>No staff found</p></div>
+                                </div>`;
+                        $('.row').append(html);
+            }
+        }
+
+        </script>
 </body>
 
 </html>

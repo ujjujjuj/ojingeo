@@ -26,6 +26,8 @@ input[type=text]{
     width: 245px;
     border-radius: 6px;
     text-decoration: none;
+    font-family: 'Oxygen';
+
     border: none;
 }
 
@@ -51,3 +53,5 @@ input[type=submit]{
     text-align: center;
 
 }
+
+

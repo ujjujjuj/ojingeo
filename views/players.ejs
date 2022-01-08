@@ -115,7 +115,7 @@
 
     <div class="create-dialog">
         <h1>Create New Player</h1>
-        <form method="post" action="/" id="create-form">
+        <form method="post" action="/frontman/player/new" id="create-form">
             <label for="form-name">Name</label>
             <input type="text" name="name" id="form-name" placeholder="John Doe" required>
             <label for="form-gender">Gender</label>
@@ -298,8 +298,6 @@
                 $('.no-player').show()
             $('.user-model').hide();
             }
-
-            
         }
 
         function selectSearch(elem,index) {
