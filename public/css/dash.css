@@ -1,0 +1,132 @@
+html {
+    scroll-behavior: smooth;
+  }
+body{
+    margin: 0;
+    padding: 0;
+    font-family: 'Oxygen';
+    background-color: #1a1a1a;
+    box-sizing: border-box;
+}
+nav{
+    background-color: #272727;
+    box-shadow: 0px 4px 8px #0C0C0C;
+        padding: 15px 55px;
+}
+
+textarea:focus, input:focus, select:focus{
+    outline: none;
+}
+
+
+.nav{
+    text-decoration: none;
+    color: white;
+    padding: 0 15px;
+    font-weight: 300;
+}
+
+.active{
+    color: #FF6489;
+}
+
+.nav:hover{
+    color: #FF6489;
+}
+.dash{
+    display: flex;
+    margin-top: 40px;
+    padding-left: 75px;
+    padding-right: 75px;
+}
+.dash-wrap{
+    display: flex;
+    flex-direction: column;
+}
+.dash-box p{
+    color: #FF6489;
+    margin: 0;
+    margin-top: 10px;
+    font-size: 28px;
+    font-family: 'Game Of Squids';
+}
+
+.dash-box{
+    display: flex;
+    width:26vw;
+    padding: 20px 30px 20px 30px;
+    color: white;
+    margin-bottom: 30px;
+    flex-direction: column;
+    background-color: #363636;
+    border-radius: 9px;
+}
+.box-2{
+    flex-direction: row;
+    cursor: pointer;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.box-2 i{
+    font-size: 35px;
+    color: white;
+}
+
+.title i{
+    font-size: 22px;
+}
+
+.title{
+    display: flex;
+    align-items: center;
+}
+
+.chart-wrap{
+    background-color: #363636;
+    border-radius: 9px;
+    width: 100%;
+    margin-left: 30px;
+    justify-content: space-between;
+    display: flex;
+    padding: 0 40px;
+    color: white;
+    align-items: center;
+}
+
+.chart-wrap h1{
+    font-size: 25px;
+    font-weight: 400;
+    margin-top: 0;
+}
+
+.circle{
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+}
+
+.legend{
+    display: flex;
+    align-items: center;
+    margin-top: 30px;
+}
+
+.legend p{
+    margin: 0;
+    margin-left: 20px;
+}
+
+.line{
+   margin-left: 0;
+   margin-right: 30px;
+   padding: 0 100px;
+}
+.download{
+    color:white;
+    background-color: #FF6489;
+    border-radius: 6px;
+    padding: 15px 15px;
+    text-align: center;
+    font-size: 18px;
+}

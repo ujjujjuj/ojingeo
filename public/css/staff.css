@@ -52,10 +52,6 @@ textarea:focus, input:focus, select:focus{
 .search-box i{
     opacity: 0.3;
 }
-.left{
-    overflow: hidden;
-}
-
 .srch{
     margin-left: 75px;
 
@@ -77,275 +73,6 @@ textarea:focus, input:focus, select:focus{
     font-size: 15px;
     border: none;
     border-radius: 5px;
-}
-
-.right{
-    overflow: auto;
-    height: 93vh;
-}
-.grid{
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
-}
-
-.player{
-    background-repeat: no-repeat;
-    background-size: cover;
-    width: 10vw;
-    background-position: top center;
-    height: 10vw;
-    position: relative;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-#playerId{
-    position: absolute ;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    text-align: center;
-    opacity: 1;
-    transition: all 0.3s ease;
-    color: #B9FBFF;
-    font-size: 33px;
-    margin-bottom: 13px;
-    font-family: "dig";
-    z-index: 10;
-}
-
-.player-data{
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    pointer-events: none;
-    cursor: pointer;
-
-    opacity: 0;
-    transition: all 0.5s ease;
-    z-index: 10;
-}
-.player-data p{
-    color: white;
-}
-
-.player-data .name{
-    font-family: "dig";
-    margin: 0;
-    text-align: center;
-    padding: 0 10px;
-    color: #B9FBFF;
-    font-size: 25px;
-}
-.player-data .click{
-    font-family: "Oxygen";
-    margin: 0;
-    font-size: 13px;
-    margin-top: 7px;
-}
-
-.player:hover .player-data{
-    pointer-events: all;
-    opacity: 1;
-}
-
-.player:hover #playerId{
-    opacity: 0;
-}
-
-
-.player:hover::after{
-    background: linear-gradient(180deg, rgba(0, 0, 0, 0) -204.21%, #000000 91.82%);
-}
-
-.player::after{
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgb(0,0,0);
-    background: linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, #000000 100%);
-    opacity: 1;
-    z-index: 1;
-    transition: all 0.3s ease;
-}
-
-.no-player{
-    font-family: "Game Of Squids";
-    color: white;
-    margin-left: 75px;
-    font-size: 2vw;
-    margin-top: 250px;
-}
-
-.user-image{
-    content: "";
-    width: 200px;
-    height: 200px;
-    border-radius: 13px;
-    background-size: contain;
-    background-repeat: no-repeat;
-    background-image: url("https://randomuser.me/api/portraits/men/1.jpg");
-}
-
-.user-model{
-    margin-left: 75px; 
-    margin-top: 100px;
-}
-
-.profile-wrap{
-    display: flex; 
-    align-items: center; 
-    color: white;
-}
-
-#userId{
-    font-family: 'Game Of Squids';
-    margin: 0;
-    font-size: 30px;
-}
-
-.user-name{
-    display: flex;
-    margin-left: 40px;
-    flex-direction: column;
-    justify-content: start;
-}
-
-.gender {
-    margin-top: 10px;
-
-    font-size: 25px;
-}
-.gender p{
-    font-weight: 700;
-    margin: 0;
-    margin-left: 15px;
-}
-
-.user-model h1{
-    color: white;
-    font-size: 27px;
-    margin-top: 40px;
-}
-
-.status-wrap{
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-}
-#status-box{
-    display: flex;
-    align-items: center;
-}
-
-#status-box p{
-    margin: 0;
-    margin-left: 15px;
-    font-size: 20px;
-    color: white;
-    
-}
-.debt{
-    margin-left: 160px;
-    color: white;
-
-}
-#debt{
-    font-size: 20px;
-}
-
-.ui-wrap{
-    display: flex;
-    align-items: center;
-}
-
-#statusDot{
-    width: 16px;
-    height: 16px;
-    border-radius: 50%;
-    background-color: #B8FFB7;
-}
-.elim{
-    display: flex;
-    border: none;
-
-    border-radius: 6px;
-    padding: 10px 25px;
-    color: white;
-    background-color: #FF6489;
-    cursor: pointer;
-    margin-top: 50px;
-    align-items: center;
-}
-.elim p{margin: 0;margin-left: 8px;
-    font-size: 18px;
-
-}
-
-.search-box input{
-    width: 100%;
-}
-
-.disabled{
-    opacity: 0.5;
-    pointer-events: none;
-}
-
-.elim-overlay{
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    transition: all 0.4s ease;
-    height: 100%;
-    background-image: url('../cross.png');   
-    z-index: 30;
-    opacity: 0;
-    background-size: contain;
-
-}
-
-.elim-box{
-    color: white;
-    width: 30%;
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;   
-    padding-bottom: 30px;
-    padding-top: 10px;
-    z-index: 100;
-    border-radius: 6px;
-    background-color: #363636;
-    transform: translate(-50%,-50%);
-}
-
-.elim-box p{
-    text-align: center;
-}
-
-.buttons{
-    color: white;
-    display: flex;
-    align-items: center;
-    margin-top: 10px;
-}
-.buttons button{
-    background-color: #FF6489;
-    padding: 10px 32px;
-    border: none;
-    color: white;
-    border-radius: 6px;
-    cursor: pointer;
 }
 
 .bg-overlay{
@@ -426,15 +153,16 @@ form label{
 
 
 .categ-wrap{
-    margin: 0 15px;
+    cursor: pointer;
+    margin: 0 25px;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
 }
 .categ-wrap .class-img{
-    width: 50px;
-    height: 50px;
+    width: 40px;
+    height: 40px;
     background-repeat: no-repeat;
     background-size: contain;
 }
@@ -443,12 +171,41 @@ form label{
 
 .categ-wrap p{
     text-align: center;
+    margin: 0;
+    margin-top: 14px;
     color: white;
 }
 
 .all{
     background-image: url('../allShape.png');
 }
+.all-red{
+    background-image: url('../allShapeRed.png');
+}
+.categ-wrap:hover .all{
+    background-image: url('../allShapeRed.png');
+}
+
+.active p{
+    color: #FF6489;
+}
+
+.categ-wrap:hover p{
+    color: #FF6489;
+}
+
+.categ-wrap:hover .workers{
+    background-image: url('../ellipseRed.png');
+}
+
+.categ-wrap:hover .soldier{
+    background-image: url('../squareRed.png');
+}
+
+.categ-wrap:hover .manager{
+    background-image: url('../triangleRed.png');
+}
+
 .workers{
     background-image: url('../ellipse.png');
 }
@@ -458,6 +215,17 @@ form label{
 .manager{
     background-image: url('../triangle.png');
 }
+
+.workers-red{
+    background-image: url('../ellipseRed.png');
+}
+.soldier-red{
+    background-image: url('../squareRed.png');
+}
+.manager-red{
+    background-image: url('../triangleRed.png');
+}
+
 
 .table-head{
     display: flex;
@@ -474,7 +242,7 @@ form label{
 }
 .table-row{
     color: white;
-    padding: 0px 30px;
+    padding: 4px 30px;
     padding-right   : 55px;
     display: flex;
     justify-content: space-between;
@@ -486,18 +254,79 @@ form label{
     align-items: center;
 }
 
+.table-row:hover{
+    background-color: #292929;
+}
+
 .staff-wrap{
     display: flex;
     align-items: center;
 }
 
 .staff-wrap p{
-    margin-left: 10px;
+    margin-left: 20px;
 }
 .icon{
     width: 20px;
     height: 20px;
     background-repeat: no-repeat;
     background-size: contain;
-    background-image: url('../ellipse.png');
+}
+
+.edit-dialog{
+    color: white;
+    width: 50%;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding:10px 20px;
+    padding-bottom: 40px;
+    padding-top: 20px;
+    align-items: center;
+    z-index: 100;
+    border-radius: 6px;
+    background-color: #363636;
+    transform: translate(-50%,-50%);
+}
+
+.edit-dialog h1{
+    font-family: 'Oxygen';
+}
+
+.edit-dialog h1{
+    font-size: 28px;
+    text-align: center;
+}
+
+.edit-dialog form{
+    display: flex;
+    flex-direction: column;
+}
+
+.edit-dialog form select{
+    width: 350px;
+}
+
+.edit-dialog button{
+    background-color: #FF6489;
+    border: none;
+    border-radius:5px;
+    color: white;
+    margin-top: 40px;
+    padding: 10px 20px;
+}
+.desig{
+    display: flex;
+    align-items: center;
+}
+.desig p{
+    margin: 0;
+    margin-left: 10px;
+}
+
+.search-box input{
+    width: 90%;
 }

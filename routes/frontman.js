@@ -36,7 +36,7 @@ router.get("/", async (req, res) => {
     let playersDead = deathsPerRound.reduce((a, b) => a + b);
     let playersLeft = totalPlayers - playersDead;
 
-    return res.send({ currentGame, playersLeft, playersDead, mortalityRates });
+    return res.render("dash",{ currentGame, playersLeft, playersDead, mortalityRates });
 
 });
 

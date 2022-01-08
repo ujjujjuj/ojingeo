@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <base href="/">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Oxygen:wght@300;400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="./css/style.css">
+    <link rel="stylesheet" href="./css/dash.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@3.7.0/dist/chart.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"
+        integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+</head>
+<body>
+    <nav>
+        <a href="/frontman" class="nav active">Dashboard</a>
+        <a href="/frontman/players" class="nav">Players</a>
+        <a href="/frontman/workers" class="nav ">Staff</a>
+        <a href="/frontman/home" class="nav">Games</a>
+    </nav>
+    <div class="dash">
+        <div class="dash-wrap">
+            <div class="dash-box">
+                <div class="title"> <i class="fas fa-rupee-sign"></i>&nbsp; &nbsp; Current Prize Money</div>
+                <p id="money"> 4,200,200,000</p>
+            </div>
+            <div class="dash-box">
+                <div class="box-wrap">
+                    <div class="title"> <i class="fas fa-rupee-sign"></i>&nbsp; &nbsp; Total Prize Money</div>
+                    <p id="money-total"></p>
+                </div>
+            </div>
+            <div class="dash-box box-2" style="margin-bottom: 0;">
+                <div class="box-wrap">
+                <div class="title"> <i class="far fa-play-circle"></i>&nbsp; &nbsp; Current Game</div>
+                <p id="current">4,200,200,000</p>
+                </div>
+                <img src="./arrow.png" width="17">
+            </div>
+        </div>
+        <div class="chart-wrap">       
+            <canvas id="line-chart" width="600px">
+            </canvas>
+    </div>
+    </div>
+    <div class="dash" style="margin-bottom: 30px;">
+        <div class="chart-wrap line">
+            <div class="legend-wrap">
+                <h1>Total Players</h1>
+                <div class="legend">
+                    <div class="circle" style="background-color: #B8FFB7; "></div>
+                    <p>Active</p>
+                </div>
+                <div class="legend">
+                    <div class="circle" style="background-color: #BE4D68; "></div>
+                    <p>Eliminated</p>
+                </div>
+            </div>
+            <canvas id="pie">
+            
+        </canvas>
+           
+        </div>
+        <div class="dash-wrap">
+            <div class="dash-box box-2">
+                <div class="box-wrap">
+                    <div class="title"> <i class="far fa-user"></i>&nbsp; &nbsp; Players Remaining</div>
+                    <p id="players">4,200,200,000</p>
+                </div>
+                <img src="./arrow.png" width="17">
+            </div>
+            <div class="dash-box box-2">
+                <div class="box-wrap">
+                    <div class="title"> <i class="far fa-user"></i>&nbsp; &nbsp; Players Dead</div>
+                    <p id="players-dead">4,200,200,000</p>
+                </div>
+                <img src="./arrow.png" width="17">
+            </div>
+            <div class="download">
+                <i class="far fa-arrow-alt-circle-down"></i> Download CSV Report
+            </div>
+        </div>
+    </div>
+    
+
+
+    <script type="text/javascript">
+        var playersLeft =<%-JSON.stringify(playersLeft)%>;
+        var playersDead =<%-JSON.stringify(playersDead)%>;
+        var currentGame =<%-JSON.stringify(currentGame)%>;
+        $('#money').html((playersDead*10000000).toLocaleString('en-IN'));
+        $('#money-total').html((100*10000000).toLocaleString('en-IN'));
+        $('#players').html(playersLeft);
+        $('#players-dead').html(playersDead);
+
+        $('#current').html(currentGame.name);
+        var ctx = document.getElementById('pie').getContext('2d');
+        var myChart = new Chart(ctx, {
+            type: 'pie',
+            data: {
+                labels: ['Active', 'Eliminated'],
+                datasets: [{
+                            label: 'My First Dataset',
+                            data: [playersLeft, playersDead],
+                            backgroundColor: [
+                            'rgb(184, 255, 183)',
+                            'rgb(190, 77, 104)'
+                            ],
+                            hoverOffset: 1,
+                            borderWidth:0
+                        }]
+            },
+            options: {
+                responsive: false,
+                plugins: {
+                    legend: {
+                        display: false
+                    }
+                }
+            }
+        });
+        var ctx2 = document.getElementById('line-chart').getContext('2d');
+        var myChart2 = new Chart(ctx2, {
+            type: 'line',
+            data: {
+            labels: [
+      "Red light, green light",
+      "Sugar Honeycombs",
+      "Tug of War",
+      "Marbles",
+      "Hopscotch",
+      "Squid Game"
+    ],
+            datasets: [{
+                label: 'Mortality Rate',
+                data: [65, 80, 100, 150, 170, 300],
+                fill: true,
+                borderColor: 'rgb(255, 255, 255)',
+                tension: 0.1
+            }]
+            },
+            options:{
+                plugins:{
+                    title:{
+                        display: true,
+                        text: "Mortality Rates",
+                        color: 'white'
+                    },
+                    legend:{
+                        display: false,
+                        labels:{
+                            color: 'rgb(255, 255, 255)'
+                        }
+                    }
+                },
+                scales: {
+                y:{
+                    ticks:{
+                        color:'white'
+                    }
+                },
+                x: {
+                    ticks: {
+                        color: "white",
+                        padding:10
+                    }
+                }
+            }
+            }
+        });
+
+        
+
+    </script>
+</body>
+</html>

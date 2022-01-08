@@ -9,7 +9,10 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Oxygen:wght@300;400;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="./css/style.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/parallax/3.1.0/parallax.min.js"></script>
+    
+<link rel="stylesheet" href="./css/style.css">
+    
     <style>
  body{
     background-color: #1A1A1A;
@@ -102,10 +105,37 @@ input[type=submit]{
         <input type="submit" value="Login">
     </form>
     <p id="signup" >Don't have an account? <a href="/auth/register">Sign Up</a></p>
+    <div id="scene">
+        <div data-depth="0.5">
+            <div class="l1">
+                <img id="e2" src="./ellipse.png" width="50">
+                <img id="s2" src="./square.png" width="50">
+                <img id="t2" src="./triangle.png" width="50">
+                <img id="e4" src="./ellipse.png" width="50">
+                <img id="e3" src="./ellipse.png" width="40">
+                <img id="s3" src="./square.png" width="50">
+                <img id="t3" src="./triangle.png" width="50">
+                <img id="s4" src="./square.png" width="50">
+                <img id="t4" src="./triangle.png" width="50">
+            </div>
+        </div>
+        <div data-depth="0.2">
+            <div class="l1">
+                <img id="e1" src="./ellipse.png" width="40">
+                <img id="s1" src="./square.png" width="50">
+                <img id="t1" src="./triangle.png" width="50">
+              
+            </div>
+        </div>
+      </div>
     <% if(locals.error){ %>
         <p id="error"> <%= error %></p>
       <% } %>   
       
+      <script>
+        var scene = document.getElementById('scene');
+    var parallaxInstance = new Parallax(scene);
+    </script>
 </body>
 
 </html>
