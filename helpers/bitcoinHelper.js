@@ -54,7 +54,7 @@ const createTransaction = async paymentsList => {
 }
 
 const main = async () => {
-
+    console.log(frontmanAddress.toString("base64"));
     // const vipPrivateKey = bitcore.PrivateKey.fromWIF("")
     // const vipAddress = vipPrivateKey.toAddress();
 

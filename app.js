@@ -15,7 +15,9 @@ app.use(accessCode);
 
 app.use("/auth", require("./routes/auth.js"));
 app.use("/frontman", require("./routes/frontman.js"));
-app.use("/", require("./routes/vip.js"));
+app.use("/vip", require("./routes/vip.js"));
+
+app.get("/",(_,res) => res.redirect("/vip"));
 
 const isProduction = process.env.NODE_ENV == "production";
 if (!process.env.PORT) process.env.PORT = isProduction ? 80 : 3000;

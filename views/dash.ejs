@@ -28,19 +28,19 @@
         <div class="dash-wrap">
             <div class="dash-box">
                 <div class="title"> <i class="fas fa-rupee-sign"></i>&nbsp; &nbsp; Current Prize Money</div>
-                <p>4,200,200,000</p>
+                <p id="money"> 4,200,200,000</p>
             </div>
             <div class="dash-box box-2">
                 <div class="box-wrap">
                     <div class="title"> <i class="far fa-user"></i>&nbsp; &nbsp; Players Remaining</div>
-                    <p>4,200,200,000</p>
+                    <p id="players">4,200,200,000</p>
                 </div>
                 <img src="./arrow.png" width="17">
             </div>
             <div class="dash-box box-2" style="margin-bottom: 0;">
                 <div class="box-wrap">
                 <div class="title"> <i class="far fa-play-circle"></i>&nbsp; &nbsp; Current Game</div>
-                <p>4,200,200,000</p>
+                <p id="current">4,200,200,000</p>
                 </div>
                 <img src="./arrow.png" width="17">
             </div>
@@ -70,9 +70,10 @@
     <div class="download"></div>
 
     <script type="text/javascript">
-        // var playersLeft =<%-JSON.stringify(playersLeft)%>;
-        // var playersDead =<%-JSON.stringify(playersDead)%>;
-        // var currentGame =<%-JSON.stringify(currentGame)%>;
+        var playersLeft =<%-JSON.stringify(playersLeft)%>;
+        var playersDead =<%-JSON.stringify(playersDead)%>;
+        var currentGame =<%-JSON.stringify(currentGame)%>;
+        $('#money').html(playersDead*1000000);
         var ctx = document.getElementById('pie').getContext('2d');
         var myChart = new Chart(ctx, {
             type: 'pie',

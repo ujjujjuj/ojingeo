@@ -12,6 +12,14 @@ const userSchema = new mongoose.Schema(
         createdAt: {
             type: Date,
             default: Date.now
+        },
+        bets: {
+            type: Object,
+            default: {}
+        },
+        money:{
+            type:Number,
+            default:0
         }
     }, { versionKey: false }
 );

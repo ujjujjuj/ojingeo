@@ -34,7 +34,7 @@ router.post("/login", async (req, res) => {
     if (user.isFrontman) {
         return res.redirect("/frontman")
     } else {
-        return res.redirect("/");
+        return res.redirect("/vip");
     }
 })
 
@@ -48,7 +48,8 @@ router.post("/register", async (req, res) => {
     const hashedPassword = crypto.createHash('sha256').update(req.body.password).digest('hex');
     user = new User({
         _id: req.body.username,
-        password: hashedPassword
+        password: hashedPassword,
+        walletAddress: walletAddress
     });
     try {
         await user.save();
@@ -58,7 +59,7 @@ router.post("/register", async (req, res) => {
     }
 
     res.cookie("auth", req.body.username, { signed: true, maxAge: 1000 * 60 * 60 * 48 });
-    return res.redirect("/");
+    return res.redirect("/vip");
 })
 
 module.exports = router;
