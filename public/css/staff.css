@@ -58,10 +58,9 @@ textarea:focus, input:focus, select:focus{
 
 .srch{
     margin-left: 75px;
-    margin-top: 30px;
 
     display: flex;
-    align-items: center;
+    align-items: flex-start;
 }
 
 .nav:hover{
@@ -425,3 +424,80 @@ form label{
     padding: 10px 20px;
 }
 
+
+.categ-wrap{
+    margin: 0 15px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+.categ-wrap .class-img{
+    width: 50px;
+    height: 50px;
+    background-repeat: no-repeat;
+    background-size: contain;
+}
+
+
+
+.categ-wrap p{
+    text-align: center;
+    color: white;
+}
+
+.all{
+    background-image: url('../allShape.png');
+}
+.workers{
+    background-image: url('../ellipse.png');
+}
+.soldier{
+    background-image: url('../square.png');
+}
+.manager{
+    background-image: url('../triangle.png');
+}
+
+.table-head{
+    display: flex;
+    justify-content: space-between;
+    color: white;
+    background-color: #FF6489;
+    border-radius: 6px;
+    font-size: 8px;
+    padding: 0px 30px;
+    padding-right   : 45px;
+    margin: 30px 75px;
+    margin-bottom: 20px;
+
+}
+.table-row{
+    color: white;
+    padding: 0px 30px;
+    padding-right   : 55px;
+    display: flex;
+    justify-content: space-between;
+    font-size: 14px;
+    margin: 15px 75px;
+    background-color: #363636;
+    border-radius: 6px;
+    font-weight: 300;
+    align-items: center;
+}
+
+.staff-wrap{
+    display: flex;
+    align-items: center;
+}
+
+.staff-wrap p{
+    margin-left: 10px;
+}
+.icon{
+    width: 20px;
+    height: 20px;
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-image: url('../ellipse.png');
+}

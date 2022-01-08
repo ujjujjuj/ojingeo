@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <base href="/">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Oxygen:wght@300;400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="./css/style.css">
+    <link rel="stylesheet" href="./css/staff.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"
+        integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <style>
+        .header{
+            display: flex;
+            margin-top: 30px;
+        }
+
+        .categ{
+            align-items: center;
+            display: flex;
+            margin-left: 60px;
+        }
+
+
+            
+
+    </style>
+</head>
+
+<body>
+    <nav>
+        <a href="/frontman/home" class="nav">Dashboard</a>
+        <a href="/frontman/players" class="nav">Players</a>
+        <a href="/frontman/workers" class="nav active">Staff</a>
+        <a href="/frontman/home" class="nav">Games</a>
+    </nav>
+    <div class="header">
+        <div class="srch">
+        <div class="search-box">
+            <input oninput="filter()" class="search-name" placeholder="Search staff by ID">
+            <i class="fas fa-search""></i>
+        </div>
+        <button onclick=" create()" class="create">
+                Create New Staff
+        </button>
+        </div>
+        <div class="categ">
+            <div class="categ-wrap">
+                <div class="class-img all"></div>
+                <p>All</p>
+            </div>
+            <div class="categ-wrap">
+                <div class="class-img manager "></div>
+
+                <p>Manager</p>
+
+            </div>
+            <div class="categ-wrap">
+                <div class="class-img soldier "></div>
+
+                <p>Soldier</p>
+            </div>
+            <div class="categ-wrap">
+                <div class="class-img workers "></div>
+
+                <p>Workers</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="table-head">
+        <h1>Staff ID</h1>
+        <h1>Assigned Task</h1>
+    </div>
+    <div class="row">
+        <div class="table-row">
+            <div class="staff-wrap">
+                <div class="icon"></div>
+                <p>Staff ID</p></div>
+            <p>Assigned Task</p>
+        </div>
+        <div class="table-row">
+            <div class="staff-wrap">
+                <div class="icon"></div>
+                <p>Staff ID</p></div>
+            <p>Assigned Task</p>
+        </div>
+        <div class="table-row">
+            <div class="staff-wrap">
+                <div class="icon"></div>
+                <p>Staff ID</p></div>
+            <p>Assigned Task</p>
+        </div>
+    </div>
+  
+    
+    <script>
+        var list =<%-JSON.stringify(data)%>;
+        $('.row').empty();
+        list.forEach(element => {
+            let html=`<div class="table-row">
+            <div class="staff-wrap">
+                <div class="icon"></div>
+                <p>120</p></div>
+            <p>Assigned Task</p>
+        </div>
+        })`;});
+    </script>
+</body>
+
+</html>
