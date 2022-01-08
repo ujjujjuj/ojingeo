@@ -22,10 +22,46 @@
         <a href="/frontman" class="nav active">Dashboard</a>
         <a href="/frontman/players" class="nav">Players</a>
         <a href="/frontman/workers" class="nav ">Staff</a>
-        <a href="/frontman/home" class="nav">Games</a>
+        <a href="/frontman/games" class="nav">Games</a>
     </nav>
-    <div class="dash">
+    <div class="dash" style="margin-bottom: 30px;">
+        <div class="charts">
+            <div class="chart-wrap line">
+                <div class="legend-wrap">
+                    <h1>Total Players</h1>
+                    <div class="legend">
+                        <div class="circle" style="background-color: #B8FFB7; "></div>
+                        <p>Active</p>
+                    </div>
+                    <div class="legend">
+                        <div class="circle" style="background-color: #BE4D68; "></div>
+                        <p>Eliminated</p>
+                    </div>
+                </div>
+                <canvas id="pie" style="margin-left: 50px;">  
+            </canvas>
+            </div>
+            <div class="chart-wrap">       
+                <canvas id="line-chart">
+                </canvas>
+        </div>
+        </div>
+       
         <div class="dash-wrap">
+            <div class="dash-box box-2"  id="players-click">
+                <div class="box-wrap">
+                    <div class="title"> <i class="far fa-user"></i>&nbsp; &nbsp; Players Remaining</div>
+                    <p id="players">4,200,200,000</p>
+                </div>
+                <img src="./arrow.png" width="17">
+            </div>
+            <div class="dash-box box-2"  id="players-click1">
+                <div class="box-wrap">
+                    <div class="title"> <i class="far fa-user"></i>&nbsp; &nbsp; Players Eliminated</div>
+                    <p id="players-dead">4,200,200,000</p>
+                </div>
+                <img src="./arrow.png" width="17">
+            </div>
             <div class="dash-box">
                 <div class="title"> <i class="fas fa-rupee-sign"></i>&nbsp; &nbsp; Current Prize Money</div>
                 <p id="money"> 4,200,200,000</p>
@@ -36,49 +72,10 @@
                     <p id="money-total"></p>
                 </div>
             </div>
-            <div class="dash-box box-2" style="margin-bottom: 0;">
+            <div class="dash-box box-2"  id="game-click" style="margin-bottom: 0;">
                 <div class="box-wrap">
                 <div class="title"> <i class="far fa-play-circle"></i>&nbsp; &nbsp; Current Game</div>
                 <p id="current">4,200,200,000</p>
-                </div>
-                <img src="./arrow.png" width="17">
-            </div>
-        </div>
-        <div class="chart-wrap">       
-            <canvas id="line-chart" width="600px">
-            </canvas>
-    </div>
-    </div>
-    <div class="dash" style="margin-bottom: 30px;">
-        <div class="chart-wrap line">
-            <div class="legend-wrap">
-                <h1>Total Players</h1>
-                <div class="legend">
-                    <div class="circle" style="background-color: #B8FFB7; "></div>
-                    <p>Active</p>
-                </div>
-                <div class="legend">
-                    <div class="circle" style="background-color: #BE4D68; "></div>
-                    <p>Eliminated</p>
-                </div>
-            </div>
-            <canvas id="pie">
-            
-        </canvas>
-           
-        </div>
-        <div class="dash-wrap">
-            <div class="dash-box box-2">
-                <div class="box-wrap">
-                    <div class="title"> <i class="far fa-user"></i>&nbsp; &nbsp; Players Remaining</div>
-                    <p id="players">4,200,200,000</p>
-                </div>
-                <img src="./arrow.png" width="17">
-            </div>
-            <div class="dash-box box-2">
-                <div class="box-wrap">
-                    <div class="title"> <i class="far fa-user"></i>&nbsp; &nbsp; Players Dead</div>
-                    <p id="players-dead">4,200,200,000</p>
                 </div>
                 <img src="./arrow.png" width="17">
             </div>
@@ -88,12 +85,15 @@
         </div>
     </div>
     
+    <a href="/frontman/downloadInfo" target="_blank" id="download-csv" hidden> </a>
 
 
     <script type="text/javascript">
         var playersLeft =<%-JSON.stringify(playersLeft)%>;
         var playersDead =<%-JSON.stringify(playersDead)%>;
         var currentGame =<%-JSON.stringify(currentGame)%>;
+        var mortalityRates =<%-JSON.stringify(mortalityRates)%>;
+
         $('#money').html((playersDead*10000000).toLocaleString('en-IN'));
         $('#money-total').html((100*10000000).toLocaleString('en-IN'));
         $('#players').html(playersLeft);
@@ -139,13 +139,15 @@
     ],
             datasets: [{
                 label: 'Mortality Rate',
-                data: [65, 80, 100, 150, 170, 300],
+                data: mortalityRates,
                 fill: true,
                 borderColor: 'rgb(255, 255, 255)',
-                tension: 0.1
+                tension: 0.2
             }]
             },
             options:{
+                responsive: true,
+
                 plugins:{
                     title:{
                         display: true,
@@ -174,8 +176,18 @@
             }
             }
         });
-
-        
+        document.querySelector('.download').addEventListener('click',()=>{
+            document.getElementById('download-csv').click();
+        });
+        document.getElementById('game-click').addEventListener('click',()=>{
+            window.location.href='/frontman/games'
+        })
+        document.getElementById('players-click').addEventListener('click',()=>{
+            window.location.href='/frontman/players'
+        })
+        document.getElementById('players-click1').addEventListener('click',()=>{
+            window.location.href='/frontman/players'
+        })
 
     </script>
 </body>

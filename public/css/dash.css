@@ -1,6 +1,10 @@
 html {
     scroll-behavior: smooth;
   }
+*{
+    margin: 0;
+    padding: 0;
+}
 body{
     margin: 0;
     padding: 0;
@@ -34,26 +38,34 @@ textarea:focus, input:focus, select:focus{
     color: #FF6489;
 }
 .dash{
-    display: flex;
+    display: grid;
+    grid-template-columns: 2fr 1fr;
     margin-top: 40px;
     padding-left: 75px;
+    
+    column-gap: 30px;    
     padding-right: 75px;
 }
-.dash-wrap{
+
+.charts{
     display: flex;
     flex-direction: column;
 }
+
+/* .dash-wrap{
+    display: flex;
+    flex-direction: column;
+} */
 .dash-box p{
     color: #FF6489;
     margin: 0;
     margin-top: 10px;
-    font-size: 28px;
+    font-size: 24px;
     font-family: 'Game Of Squids';
 }
 
 .dash-box{
     display: flex;
-    width:26vw;
     padding: 20px 30px 20px 30px;
     color: white;
     margin-bottom: 30px;
@@ -85,11 +97,9 @@ textarea:focus, input:focus, select:focus{
 .chart-wrap{
     background-color: #363636;
     border-radius: 9px;
-    width: 100%;
-    margin-left: 30px;
-    justify-content: space-between;
+    justify-content: space-around;
     display: flex;
-    padding: 0 40px;
+    padding: 20px 40px;
     color: white;
     align-items: center;
 }
@@ -119,8 +129,8 @@ textarea:focus, input:focus, select:focus{
 
 .line{
    margin-left: 0;
-   margin-right: 30px;
-   padding: 0 100px;
+   padding: 50px 100px;
+   margin-bottom: 30px;
 }
 .download{
     color:white;
@@ -129,4 +139,6 @@ textarea:focus, input:focus, select:focus{
     padding: 15px 15px;
     text-align: center;
     font-size: 18px;
+    margin-top: 30px;
+    cursor: pointer;
 }

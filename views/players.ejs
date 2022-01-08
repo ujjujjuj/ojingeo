@@ -40,7 +40,7 @@
         <a href="/frontman" class="nav">Dashboard</a>
         <a href="/frontman/players" class="nav active">Players</a>
         <a href="/frontman/workers" class="nav">Staff</a>
-        <a href="/frontman/home" class="nav">Games</a>
+        <a href="/frontman/games" class="nav">Games</a>
     </nav>
 
     <section style="display: flex; justify-content: space-between;">
@@ -54,7 +54,10 @@
                         Create New Player
                         </button>
                 </div>
-                <p class="no-player">no player selected</p>
+                <div class="no-player">
+                    <h1>Squid Game</h1>
+                    <p>Select a player for more options.</p>
+                </div>
                 <div class="user-model">
                     <div class="profile-wrap">
                         <div class="user-image"></div>
@@ -274,7 +277,6 @@
             let elem;
             let string = document.querySelector('.search-name').value;
             if(string.length==0){
-                $('.no-player').html('No Player Selected');
                 $('.no-player').show();
                 prevSelected.querySelector('.status-overlay').style.opacity = 0;
 
@@ -294,7 +296,6 @@
             if(found==1)
             selectSearch(elem,i+1);
             else{
-                $('.no-player').html('No Player Found')
                 $('.no-player').show()
             $('.user-model').hide();
             }
