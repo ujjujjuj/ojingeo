@@ -29,18 +29,18 @@ router.get("/", async (req, res) => {
     let mortalityRates = [];
     let _players = totalPlayers;
     for (let i = 0; i < deathsPerRound.length; i++) {
-        mortalityRates.push(deathsPerRound[i] / _players);
+        mortalityRates.push(100 * deathsPerRound[i] / _players);
         _players -= deathsPerRound[i];
     }
 
     let playersDead = deathsPerRound.reduce((a, b) => a + b);
     let playersLeft = totalPlayers - playersDead;
 
-    return res.render("dash",{ currentGame, playersLeft, playersDead, mortalityRates });
+    return res.render("dash", { currentGame, playersLeft, playersDead, mortalityRates });
 
 });
 
-router.get("/downloadInfo", async (req, res) => {
+router.get("/downloadinfo", async (req, res) => {
     const currentGame = await Game.findOne({ isCurrentGame: true }, { game_no: 1 });
     const players = await Player.find({});
 
@@ -81,15 +81,17 @@ router.get("/players", async (req, res) => {
 router.post("/player/new", async (req, res) => {
     const lastPlayer = await Player.find().sort({ _id: -1 }).limit(1);
 
+    const randomIndex = Math.floor(Math.random() * 100)
     const player = new Player({
         _id: lastPlayer[0]._id + 1,
         name: req.body.name,
         gender: req.body.gender,
+        pfp: `https://randomuser.me/api/portraits/${(req.body.gender.toLowerCase().includes("fem") || req.body.gender.toLowerCase().includes("wom")) ? "women" : "men"}/${randomIndex}.jpg`,
         debt: req.body.debt
     })
 
     await player.save()
-    return res.send(player)
+    return res.render("players");
 });
 
 router.post("/player/eliminate", async (req, res) => {
@@ -107,6 +109,28 @@ router.get("/workers", async (req, res) => {
     const workers = await Worker.find({});
     return res.render('staff', { data: workers });
 });
+
+router.post("/worker/add", async (req, res) => {
+    const lastPlayer = await Player.find().sort({ _id: -1 }).limit(1);
+    const worker = new Worker({
+        _id: lastPlayer._id + 1,
+        name: req.body.name,
+        role: req.body.designation,
+        task: req.body.task
+    });
+
+    await worker.save();
+
+    return res.render("staff");
+});
+
+router.post("/worker/edit", async (req, res) => {
+    const worker = await Worker.findOne({ _id: req.body.id });
+    worker.task = req.body.task;
+    await worker.save();
+
+    return res.render("staff");
+})
 
 router.get("/games", async (req, res) => {
     const players = await Player.find({}, { isEliminated: 1 });
