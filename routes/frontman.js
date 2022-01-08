@@ -18,17 +18,25 @@ router.get("/", async (req, res) => {
 
     // if (!currentGame) currentGame = { game_no: 0 };
 
-    let playersLeft = 0;
-    let playersDead = 0;
+    let deathsPerRound = [0, 0, 0, 0, 0, 0];
+    let totalPlayers = 0;
     for (let player of players) {
+        totalPlayers++;
         if (player.isEliminated != 0) {
-            playersDead++;
-        } else {
-            playersLeft++;
+            deathsPerRound[player.isEliminated - 1] += 1;
         }
     }
+    let mortalityRates = [];
+    let _players = totalPlayers;
+    for (let i = 0; i < deathsPerRound.length; i++) {
+        mortalityRates.push(deathsPerRound[i] / _players);
+        _players -= deathsPerRound[i];
+    }
 
-    return res.send({ currentGame, playersLeft, playersDead });
+    let playersDead = deathsPerRound.reduce((a, b) => a + b);
+    let playersLeft = totalPlayers - playersDead;
+
+    return res.send({ currentGame, playersLeft, playersDead, mortalityRates });
 
 });
 
@@ -67,7 +75,7 @@ router.get("/downloadInfo", async (req, res) => {
 router.get("/players", async (req, res) => {
     const players = await Player.find({});
     // console.log(players);
-    return res.render("players",{data:players});  
+    return res.render("players", { data: players });
 });
 
 router.post("/player/new", async (req, res) => {
@@ -97,7 +105,7 @@ router.post("/player/eliminate", async (req, res) => {
 
 router.get("/workers", async (req, res) => {
     const workers = await Worker.find({});
-    return res.render('staff',{data:workers});
+    return res.render('staff', { data: workers });
 });
 
 router.get("/games", async (req, res) => {
@@ -114,33 +122,33 @@ router.get("/games", async (req, res) => {
             deathsPerRound[player.isEliminated - 1] += 1;
         }
     }
+    let mortalityRates = [];
+    let _players = totalPlayers;
+    for (let i = 0; i < deathsPerRound.length; i++) {
+        mortalityRates.push(deathsPerRound[i] / _players);
+        _players -= deathsPerRound[i];
+    }
 
-    return res.render("frontmanGames", { data: { deathsPerRound, games, totalPlayers } })
+    return res.render("frontmanGames", { data: { deathsPerRound, games, totalPlayers, mortalityRates } })
 });
 
 router.post("/games/next", async (req, res) => {
-    const games = await Game.findOne({});
+    const lastGame = await Game.findOne({ isCurrentGame: true });
     const users = await User.find({});
 
-    let lastGame = 0;
-    for (let i = 0; i < games.length; i++) {
-        if (games[i].isCurrentGame) {
-            lastGame = i + 1;
-            games[i].isCurrentGame = false;
-            await games[i].save();
-            if (i != games.length - 1) {
-                games[i + 1].isCurrentGame = true;
-                await games[i + 1].save();
-            }
-        }
+    lastGame.isCurrentGame = false
+    const nextGame = await Game.findOne({ game_no: lastGame.game_no + 1 });
+    if (nextGame) {
+        nextGame.isCurrentGame = true;
+        await nextGame.save();
     }
 
     // process bets
     for (let user of users) {
         if (user.isFrontman) continue;
 
-        if (user.bets[lastGame]) {
-            for (let bet of user.bets[lastGame]) {
+        if (user.bets[lastGame.game_no]) {
+            for (let bet of user.bets[lastGame.game_no]) {
                 const player = await Player.findOne({ _id: bet[0] });
                 if (player.isEliminated > 0) {
                     user.money += bet[1];
