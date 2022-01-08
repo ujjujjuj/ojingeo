@@ -83,6 +83,7 @@ textarea:focus, input:focus, select:focus{
 .right{
     overflow: auto;
     height: 93vh;
+    overflow-x: hidden;
 }
 .grid{
     display: grid;
