@@ -37,7 +37,8 @@ const initDatabase = async () => {
     const rolesArray = ["Manager", "Guard", "Utility"]
     for (let i = 1; i <= workers.rows.length; i++) {
         let task = tasksArray[Math.floor(Math.random() * tasksArray.length)];
-        const record = new Worker({ ...workers.rows[i], role: Math.floor(Math.random() * 3), task: task, _id: i });
+        let role = rolesArray[Math.floor(Math.random() * rolesArray.length)];
+        const record = new Worker({ ...workers.rows[i], role: role, task: task, _id: i });
         await record.save()
     }
 

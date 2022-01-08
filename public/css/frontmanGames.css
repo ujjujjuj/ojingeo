@@ -1,0 +1,122 @@
+body{
+    margin: 0;
+    padding: 0;
+    width:100vw;
+    overflow-x: hidden;
+    font-family: 'Oxygen';
+    background-color: #1a1a1a;
+    box-sizing: border-box;
+}
+nav{
+    background-color: #272727;
+    box-shadow: 0px 4px 8px #0C0C0C;
+        padding: 15px 55px;
+}
+
+.nav{
+    text-decoration: none;
+    color: white;
+    padding: 0 15px;
+    font-weight: 300;
+}
+
+.active{
+    color: #FF6489;
+}
+.search-box{
+    background-color: white;
+    border-radius: 4px;
+    padding: 10px 20px;
+    width: 17vw;
+    display: flex;
+    font-weight: 3100;
+    font-size: 16px;
+    justify-content: space-between;
+    overflow: hidden;
+    align-items: center;
+}
+.search-box input{
+    font-family: 'Oxygen';
+    border: none;
+    font-weight: 300;
+    font-size: 15px;
+}
+
+.search-box i{
+    opacity: 0.3;
+}
+
+.srch{
+    margin-left: 75px;
+    margin-top: 30px;
+
+    display: flex;
+    align-items: center;
+    flex:1;
+}
+
+.nav:hover{
+    color: #FF6489;
+}
+
+.category-filters{
+    margin-left: 32px;
+    display: flex;
+    gap:24px;
+}
+.category-filters > button {
+    font-size: 18px;
+    min-width:120px;
+    padding:6px 24px;
+    border-radius: 100px;
+    border:none;
+    color:white;
+    background-color: #1a1a1a;
+    cursor: pointer;
+}
+
+.category-filters > button.selected-button {
+    background-color: #FF6489;
+}
+
+.gameList{
+    margin: 0 75px;
+    margin-top:32px;
+    display: flex;
+    flex-direction: column;
+    /* align-items: center; */
+}
+.game{
+    color: white;
+    margin-bottom: 24px;
+    border-radius: 10px;
+    padding:26px;
+    /* width:100%; */
+    background-color: #363636;
+    display: flex;
+    justify-content: space-between;  
+    align-items: center;
+}
+.game:hover{
+    background-color: #292929;
+}
+.game > div{
+    display: flex;
+    flex-direction: column;
+}
+.game.currentGame{
+    background-color: #FF6489;
+}
+.gameInfo{
+    font-size: 20px;
+    gap:16px;
+}
+.gameNum{
+    font-family: "Game Of Squids";
+}
+.gameStatistics {
+    gap:16px;
+}
+.gameStatus{
+    font-size: 20px;
+}

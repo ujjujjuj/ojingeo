@@ -1,6 +1,8 @@
 const express = require("express");
 const isLoggedIn = require("../middleware/isLoggedIn");
 const axios = require("axios");
+const { route } = require("./frontman");
+const User = require("../models/User");
 
 const router = express.Router();
 
@@ -11,26 +13,19 @@ router.use((req, res, next) => {
 });
 
 router.get("/", (req, res) => {
-    return res.redirect("/dashboard");
-});
-
-router.get("/dashboard", (req, res) => {
     // console.log(req.user);
     return res.send("dash")
 });
 
-router.get("/testpayment", async (req, res) => {
-    const data = await axios.post("https://api.coingate.com/v2/orders", {
-        price_amount: 10,
-        price_currency: "USD",
-        receive_currency: "BTC"
-    }, {
-        headers: {
-            Authorization: `Token ${process.env.COINGATE_API_TOKEN}`
-        }
-    });
-    console.log(data.data);
-    return res.send("a")
-});
+router.post("/bet", async (req, res) => {
+    const currentGame = await Game.findOne({ isCurrentGame: true }, { game_no: 1 });
+    if (!req.user.bets[currentGame.game_no]) {
+        req.user.bets[currentGame.game_no] = []
+    }
+    req.user.bets[currentGame.game_no].append(req.body.playerNumber, req.body.betAmount);
+    await req.user.save();
+
+    return res.send("success");
+})
 
 module.exports = router;
