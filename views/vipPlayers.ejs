@@ -13,7 +13,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Oxygen:wght@300;400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="./css/style.css">
     <link rel="stylesheet" href="./css/players.css">
-
+    <script src="https://cdn.jsdelivr.net/npm/notyf@3.10.0/notyf.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"
         integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ=="
         crossorigin="anonymous" referrerpolicy="no-referrer"></script>
@@ -44,27 +44,24 @@
         <a href="/frontman/games" class="nav">Games</a>
         </div>
         <div class="user-log" onclick="logout()">
-            <img src="./crown.png">
-            &nbsp; Frontman
+            <img src="./user-2.png">
+            &nbsp; VIP
         </div>
     </nav>
 
     <section style="display: flex; justify-content: space-between;">
         <div class="left">
             <div class="srch">
-                <div class="search-box">
+                <div class="search-box" style="width: 30vw;">
                     <input oninput="filter()" class="search-name" placeholder="Search players">
                     <i class="fas fa-search""></i>
                 </div>
-                <button onclick=" create()" class="create">
-                        Create New Player
-                        </button>
                 </div>
                 <div class="no-player">
                     <h1>Squid Game</h1>
                     <p>Select a player for more options.</p>
                 </div>
-                <div class="user-model">
+                <div class="user-model" style="margin-top: 70px;">
                     <div class="profile-wrap">
                         <div class="user-image"></div>
                         <div class="user-name">
@@ -76,8 +73,8 @@
 
                         </div>
                     </div>
-                    <div class="ui-wrap">
-                        <div class="status-wrap">
+                    <div class="ui-wrap" style="align-items: flex-start;">
+                        <div class="status-wrap" >
                             <h1>Status</h1>
                             <div id="status-box">
                                 <div id="statusDot"></div>
@@ -85,14 +82,20 @@
                             </div>
                         </div>
                         <div class="status-wrap debt">
-                            <h1>Debt</h1>
-                            <span id="debt"></span>
+                            <h1>Bets Placed</h1>
+                            <p><span style="color: #B8FFB7;">For :</span> <span id="for-bet">$42,000</span></p>
+                            <p id="against"><span style="color: #FF6489;">Against :</span> <span id="against-bet">$42,000</span></p>
+
                         </div>
                     </div>
-
-                    <button onclick="eliminate()" class="elim"><i class="far fa-times-circle"></i>
-                        <p>Eliminate</p>
+                    <div class="button-wrap" style="display: flex; align-items: center; margin-top: 50px;">  <button onclick="bet(1)" style="margin-top: 0;" class="elim">
+                        <p>Bet For</p>
                     </button>
+                    <button onclick="bet(-1)" style="margin-top: 0; margin-left: 25px;" class="elim">
+                        <p>Bet Against</p>
+                    </button>
+                </div>
+                  
 
                 </div>
 
@@ -114,70 +117,26 @@
             </div>
     </section>
     <div class="bg-overlay"></div>
-    <div class="elim-box">
-        <p>Are you sure you want to eliminate this player?</p>
-        <div class="buttons">
-            <button class="yes">Yes</button>
-            <button class="no">No</button>
+    <div class="elim-box" style="width: 40%;">
+        <p style="font-size:23px; font-weight: 600; margin-top: 30px; margin-bottom: 10px;">Betting <span id="bet-type">for</span> Player <span style="color: #FF6489;" id="bet-player-id">4210</span></p>
+        <form action="/vip/bet" id="bet-form">
+            <label for="form-name">Enter Amount</label>
+            <input type="text" name="playerId" id="playerId" hidden>
+            <input step="10,000" type="number" name="betAmount" id="betAmount" placeholder="₹ 42,00,00,000" required>
+        </form>
+        <div class="buttons" style="margin-top: 30px;">
+            <button class="yes" style="padding: 13px 35px; font-family: 'Oxygen'; font-size: 15px;">Place Bet</button>
         </div>
     </div>
 
-    <div class="create-dialog">
-        <h1>Create New Player</h1>
-        <form method="post" action="/frontman/player/new" id="create-form">
-            <label for="form-name">Name</label>
-            <input type="text" name="name" id="form-name" placeholder="John Doe" required>
-            <label for="form-gender">Gender</label>
-            <select id="form-gender" name="gender" required>
-                <option value="" disabled selected>Select a gender</option>
-                <option value='Agender'>Agender</option>
-                <option value='Androgyne'>Androgyne</option>
-                <option value='Androgynous'>Androgynous</option>
-                <option value='Bigender'>Bigender</option>
-                <option value='Cis Female'>Cis Female</option>
-                <option value='Cis Feminine'>Cis Feminine</option>
-                <option value='Cis Male'>Cis Male</option>
-                <option value='Cis Masculine'>Cis Masculine</option>
-                <option value='Cis Woman'>Cis Woman</option>
-                <option value='Demigirl'>Demigirl</option>
-                <option value='Demiguy'>Demiguy</option>
-                <option value='Female'>Female</option>
-                <option value='Feminine'>Feminine</option>
-                <option value='Femme'>Femme</option>
-                <option value='Genderqueer'>Genderqueer</option>
-                <option value='Genderweird'>Genderweird</option>
-                <option value='Gender Fluid'>Gender Fluid</option>
-                <option value='Intergender'>Intergender</option>
-                <option value='Intersex'>Intersex</option>
-                <option value='Male'>Male</option>
-                <option value='Man'>Man</option>
-                <option value='Masculine'>Masculine</option>
-                <option value='Neutrois'>Neutrois</option>
-                <option value='Nonbinary'>Nonbinary</option>
-                <option value='Other'>Other</option>
-                <option value='Pangender'>Pangender</option>
-                <option value='Third Gender'>Third Gender</option>
-                <option value='Trans Female'>Trans Female</option>
-                <option value='Trans Male'>Trans Male</option>
-                <option value='Trans Man'>Trans Man</option>
-                <option value='Trans Feminine'>Trans Feminine</option>
-                <option value='Trans Femme'>Trans Femme</option>
-                <option value='Trans Woman'>Trans Woman</option>
-                <option value='Woman'>Woman</option>
-            </select>
-            <label for="form-debt">Debt</label>
-            <input type="number" name="debt" id="form-debt" placeholder="₹ 40,50,300.00" required>
-        </form>
-        <button type="submit" value="Create" form="create-form">Create Player</button>
-
-    </div>
-
     <script type="text/javascript">
+        var notyf = new Notyf();
+        notyf.error('You must fill out the form before moving forward');
+
         var list =<%-JSON.stringify(data)%>;
         $('.grid').empty();
         $('.bg-overlay').hide();
         $('.elim-box').hide();
-        $('.create-dialog').hide();
         $('.user-model').hide();
         list.forEach((x, n) => {
             let html;
@@ -241,41 +200,41 @@
             prevSelected = e;
 
         }
-
-        function create() {
-            $('.bg-overlay').show();
-            $('.create-dialog').show();
-        }
-
-        function eliminate() {
+        var multiplier;
+        function bet(n) {
+            multiplier=n;
+            $('#bet-player-id').html(currentSelected._id);
+            if(multiplier==1)
+            $('#bet-type').html('for');
+            else
+            $('#bet-type').html('against');
             $('.bg-overlay').show();
             $('.elim-box').show();
-            console.log(currentSelected)
+
         }
 
         document.querySelector('.yes').addEventListener('click', () => {
-            $.post("/frontman/player/eliminate",
+            if($('#betAmount').val()>10000)
+            $.post("/vip/bet",
                 {
                     playerId: currentSelected._id,
+                    betAmount: $('#betAmount').val()*multiplier
                 },
                 function (data, status) {
                     $('.bg-overlay').hide();
                     $('.elim-box').hide();
-                    $('#statusDot').css('background-color', '#BE4D68');
-                    $('#status-box p').html("Eliminated");
-                    $('.elim').addClass('disabled');
-                    prevSelected.querySelector('.elim-overlay').style.opacity = 1;
+                    $('#betAmount').val('')
+
                 });
+            else{
+                alert('kanjoos');
+            }
         });
         document.querySelector('.bg-overlay').addEventListener('click', () => {
             $('.bg-overlay').hide();
             $('.elim-box').hide();
-            $('.create-dialog').hide();
+            $('#betAmount').val('')
 
-        });
-        document.querySelector('.no').addEventListener('click', () => {
-            $('.bg-overlay').hide();
-            $('.elim-box').hide();
         });
 
         function filter(){
@@ -284,6 +243,8 @@
             let string = document.querySelector('.search-name').value;
             if(string.length==0){
                 $('.no-player').show();
+
+
                 prevSelected.querySelector('.status-overlay').style.opacity = 0;
 
                  $('.user-model').hide();
@@ -315,7 +276,7 @@
             scrollTop: $('#'+index).offset().top - $('.right').offset().top + 
             $('.right').scrollTop()
             });
-            document.getElementById(index).scrollIntoView();
+
             if (prevSelected) {
                 prevSelected.querySelector('.status-overlay').style.opacity = 0;
             }

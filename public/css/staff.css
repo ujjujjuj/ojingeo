@@ -8,11 +8,15 @@ body{
     background-color: #1a1a1a;
     box-sizing: border-box;
 }
+
 nav{
     background-color: #272727;
     box-shadow: 0px 4px 8px #0C0C0C;
-        padding: 15px 55px;
+    padding: 15px 55px;
+    display: flex;
+    justify-content: space-between;
 }
+
 
 textarea:focus, input:focus, select:focus{
     outline: none;

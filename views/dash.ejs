@@ -19,10 +19,16 @@
 </head>
 <body>
     <nav>
+        <div class="nav-wrap">
         <a href="/frontman" class="nav active">Dashboard</a>
         <a href="/frontman/players" class="nav">Players</a>
-        <a href="/frontman/workers" class="nav ">Staff</a>
+        <a href="/frontman/workers" class="nav">Staff</a>
         <a href="/frontman/games" class="nav">Games</a>
+        </div>
+        <div class="user-log" onclick="logout()">
+            <img src="./crown.png">
+            &nbsp; Frontman
+        </div>
     </nav>
     <div class="dash" style="margin-bottom: 30px;">
         <div class="charts">
@@ -188,7 +194,9 @@
         document.getElementById('players-click1').addEventListener('click',()=>{
             window.location.href='/frontman/players'
         })
-
+        function logout(){
+                window.location.href='/auth/logout';
+            }
     </script>
 </body>
 </html>

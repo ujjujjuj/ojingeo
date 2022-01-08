@@ -32,10 +32,16 @@
 
 <body>
     <nav>
+        <div class="nav-wrap">
         <a href="/frontman" class="nav">Dashboard</a>
         <a href="/frontman/players" class="nav">Players</a>
         <a href="/frontman/workers" class="nav active">Staff</a>
         <a href="/frontman/games" class="nav">Games</a>
+        </div>
+        <div class="user-log" onclick="logout()">
+            <img src="./crown.png">
+            &nbsp; Frontman
+        </div>
     </nav>
     <div class="header">
         <div class="srch">
@@ -259,6 +265,10 @@
                     }
                 });
             }
+            }   
+
+            function logout(){
+                window.location.href='/auth/logout';
             }
 
             function filter(string, elem) {

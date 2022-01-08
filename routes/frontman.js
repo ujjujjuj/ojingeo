@@ -129,7 +129,7 @@ router.get("/games", async (req, res) => {
         _players -= deathsPerRound[i];
     }
 
-    return res.render("frontmanGames", { data: { deathsPerRound, games, totalPlayers, mortalityRates } })
+    return res.render("games", { data: { deathsPerRound, games, totalPlayers, mortalityRates } })
 });
 
 router.post("/games/next", async (req, res) => {

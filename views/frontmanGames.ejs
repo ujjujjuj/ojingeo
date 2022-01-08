@@ -37,10 +37,16 @@
 
 <body>
     <nav>
-        <a href="/frontman/" class="nav">Dashboard</a>
-        <a href="/frontman/players" class="nav">Players</a>
+        <div class="nav-wrap">
+        <a href="/frontman" class="nav">Dashboard</a>
+        <a href="/frontman/players" class="nav ">Players</a>
         <a href="/frontman/workers" class="nav">Staff</a>
         <a href="/frontman/games" class="nav active">Games</a>
+        </div>
+        <div class="user-log" onclick="logout()">
+            <img src="./crown.png">
+            &nbsp; Frontman
+        </div>
     </nav>
 
     <section style="display: flex; justify-content: space-between;flex-direction:column">
@@ -144,6 +150,9 @@
         }
 
         populateData("all")
+        function logout(){
+                window.location.href='/auth/logout';
+            }
     </script>
 
 </body>

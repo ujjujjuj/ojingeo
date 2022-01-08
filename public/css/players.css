@@ -83,7 +83,6 @@ textarea:focus, input:focus, select:focus{
 .right{
     overflow: auto;
     height: 93vh;
-    overflow-x: hidden;
 }
 .grid{
     display: grid;
@@ -179,7 +178,7 @@ textarea:focus, input:focus, select:focus{
 .no-player{
     color: white;
     flex-direction: column;
-    margin-left: 90px;
+    margin-left: 3vw;
     font-size: 2vw;
     justify-content: center;
     display: flex;
@@ -191,6 +190,7 @@ textarea:focus, input:focus, select:focus{
     font-family: "Game Of Squids";
     font-size: 3.2vw;
     padding: 0;
+    color: #FF6489;
     margin: 0;
 }
 
@@ -272,8 +272,16 @@ textarea:focus, input:focus, select:focus{
 .debt{
     margin-left: 160px;
     color: white;
-
 }
+
+.debt p{
+    font-size: 17px;
+    margin: 0;
+}
+#against{
+    margin-top: 10px;
+}
+
 #debt{
     font-size: 20px;
 }
@@ -340,7 +348,7 @@ textarea:focus, input:focus, select:focus{
     flex-direction: column;
     justify-content: center;
     align-items: center;   
-    padding-bottom: 30px;
+    padding-bottom: 40px;
     padding-top: 10px;
     z-index: 100;
     border-radius: 6px;
@@ -410,6 +418,11 @@ textarea:focus, input:focus, select:focus{
 }
 
 .create-dialog form{
+    display: flex;
+    flex-direction: column;
+}
+
+.elim-box form{
     display: flex;
     flex-direction: column;
 }
