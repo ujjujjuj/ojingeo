@@ -1,0 +1,101 @@
+html {
+    scroll-behavior: smooth;
+  }
+*{
+    margin: 0;
+    padding: 0;
+}
+body{
+    margin: 0;
+    padding: 0;
+    font-family: 'Oxygen';
+    background-color: #1a1a1a;
+    box-sizing: border-box;
+}
+nav{
+    background-color: #272727;
+    box-shadow: 0px 4px 8px #0C0C0C;
+        padding: 15px 55px;
+}
+
+textarea:focus, input:focus, select:focus{
+    outline: none;
+}
+
+
+.nav{
+    text-decoration: none;
+    color: white;
+    padding: 0 15px;
+    font-weight: 300;
+}
+
+.active{
+    color: #FF6489;
+}
+
+.nav:hover{
+    color: #FF6489;
+}
+
+#game{
+    color: white;
+    margin-top: 100px;
+    text-align: center;
+}
+#status{
+    color: #B8FFB7;
+    margin-top: 25px;
+    font-size: 25px;
+    font-weight: 300;
+    text-align: center;
+}
+.cards{
+    display: flex;
+    margin-top: 40px;
+
+    align-items: center;
+    justify-content: center;
+}
+
+.card{
+    background-color: #363636;
+    border-radius: 6px;
+    display: flex;
+    flex-direction: column;
+    padding: 30px 10px;
+    padding-bottom: 55px;
+    width: 15%;
+    align-items: center;
+    justify-content: center;
+}
+.card h1{
+    color: white;
+    font-size: 35px;
+    margin-top: 20px;
+    text-align: center;
+    font-weight: 400;
+
+}
+
+.card p{
+    color: white;
+    text-align: center;
+    margin-top: 15px;
+    font-weight: 300;
+
+    font-size: 1.4vw;
+}
+.begin{
+    display: flex;
+    justify-content: center;
+}
+.begin a{
+    text-decoration: none;
+    color:white;
+    margin-top: 40px;
+    background-color: #FF6489;
+    border-radius: 6px;
+    padding: 13px 26px;
+    font-size: 18px;
+}

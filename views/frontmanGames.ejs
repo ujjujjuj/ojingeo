@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Games</title>
+    <base href="/">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Oxygen:wght@300;400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="./css/style.css">
+    <link rel="stylesheet" href="./css/frontmanGames.css">
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"
+        integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <style>
+        .status-overlay {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            transition: all 0.4s ease;
+            height: 100%;
+            background: rgb(0, 0, 0);
+            background: linear-gradient(180deg, rgba(0, 0, 0, 0) -204.21%, #FF6489 91.82%);
+            opacity: 1;
+            z-index: 30;
+            opacity: 0;
+        }
+    </style>
+</head>
+
+<body>
+    <nav>
+        <div class="nav-wrap">
+        <a href="/frontman" class="nav">Dashboard</a>
+        <a href="/frontman/players" class="nav ">Players</a>
+        <a href="/frontman/workers" class="nav">Staff</a>
+        <a href="/frontman/games" class="nav active">Games</a>
+        </div>
+        <div class="user-log" onclick="logout()">
+            <img src="./crown.png">
+            &nbsp; Frontman
+        </div>
+    </nav>
+
+    <section style="display: flex; justify-content: space-between;flex-direction:column">
+        <div class="top">
+            <div class="srch">
+                <div class="search-box">
+                    <input oninput="filter(0)" class="name" placeholder="Search games">
+                    <i class="fas fa-search"></i>
+                </div>
+                <div class="category-filters">
+                    <button class="selected-button" onclick="changeCategory('all')" label="all">
+                        All
+                    </button>
+                    <button onclick="changeCategory('completed')" label="completed">
+                        Completed
+                    </button>
+                    <button onclick="changeCategory('ongoing')" label="ongoing">
+                        Ongoing
+                    </button>
+                    <button onclick="changeCategory('notstarted')" label="notstarted">
+                        Not Started
+                    </button>
+                </div>
+            </div>
+
+        </div>
+        <div class="gameList">
+
+
+        </div>
+    </section>
+
+
+    <script>
+        const data = <%- JSON.stringify(data) %>;
+
+        const changeCategory = cat => {
+            const buttons = document.querySelectorAll(".category-filters > button");
+            for (let button of buttons) {
+                if (button.classList.contains("selected-button") || button.getAttribute("label") == cat) {
+                    button.classList.toggle("selected-button");
+                }
+            }
+            populateData(cat)
+        }
+
+        gameUpcoming = false
+        const populateData = cat => {
+            // console.log(cat);
+            const gameList = document.querySelector(".gameList")
+            gameList.innerHTML = ""
+            for (let game of data.games) {
+                let html = "";
+                if (game.isCurrentGame) {
+                    if (cat == "notstarted" || cat == "completed") continue;
+                    gameUpcoming = true;
+                    html = `<div class="game currentGame">
+                        <div class="gameInfo">
+                            <span class="gameNum">Game ${game.game_no}</span>
+                            <span>${game.name}</span>
+                        </div>
+                        <div class="gameStatistics">
+                        </div>
+                        <span class="gameStatus">
+                            Ongoing
+                        </span>
+                    </div>`
+                } else if (gameUpcoming) {
+                    if (cat == "ongoing" || cat == "completed") continue;
+                    console.log(cat);
+                    html = `<div class="game">
+                        <div class="gameInfo">
+                            <span class="gameNum">Game ${game.game_no}</span>
+                            <span>${game.name}</span>
+                        </div>
+                        <div class="gameStatistics">
+                        </div>
+                        <span class="gameStatus">
+                            Not Started
+                        </span>
+                    </div>`
+                } else {
+                    if (cat == "ongoing" || cat == "completed") continue;
+                    html = `<div class="game">
+                        <div class="gameInfo">
+                            <span class="gameNum">Game ${game.game_no}</span>
+                            <span>${game.name}</span>
+                        </div>
+                        <div class="gameStatistics">
+                            <span>97% Mortality rate</span>
+                            <span>90 Players eliminated</span>
+                        </div>
+                        <span class="gameStatus">
+                            Completed
+                        </span>
+                    </div>`
+                }
+                gameList.innerHTML += html;
+                // console.log(game);
+            }
+        }
+
+        populateData("all")
+        function logout(){
+                window.location.href='/auth/logout';
+            }
+    </script>
+
+</body>
+
+</html>

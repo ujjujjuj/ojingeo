@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <base href="/">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Oxygen:wght@300;400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="./css/style.css">
+    <link rel="stylesheet" href="./css/game.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/parallax/3.1.0/parallax.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"
+        integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+</head>
+<body>
+    <nav>
+        <div class="nav-wrap">
+        <a href="/frontman" class="nav">Dashboard</a>
+        <a href="/frontman/players" class="nav">Players</a>
+        <a href="/frontman/workers" class="nav">Staff</a>
+        <a href="/frontman/games" class="nav active">Games</a>
+        </div>
+        <div class="user-log" onclick="logout()">
+            <img src="./crown.png">
+            &nbsp; Frontman
+        </div>
+    </nav>
+
+    <h1 id="game">Game 1: Red Light Green Light</h1>
+    <p id="status">Currently Ongoing</p>
+    <div class="cards">
+        <div class="card">
+            <img src="./mortality.svg" width="40" alt="">
+            <h1 id="mort">97%</p>
+            <p>Mortality Rate</p>
+        </div>
+        <div class="card" style="margin-left: 50px;">
+            <img src="./2user.svg" width="40" alt="">
+            <h1 id="dead">97</p>
+            <p>Players Elimiminated</p>
+        </div>
+    </div>
+    <div class="begin">
+        <a href="/frontman/games/next">  Begin Next Game &nbsp; <i class="fas fa-arrow-right"></i></a>
+      
+    </div>
+
+    <div id="scene">
+        <div data-depth="0.5">
+            <div class="l1">
+                <img id="e2" src="./ellipse.png" width="50">
+                <img id="s2" src="./square.png" width="50">
+                <img id="t2" src="./triangle.png" width="50">
+                <img id="e4" src="./ellipse.png" width="50">
+                <img id="e3" src="./ellipse.png" width="40">
+                <img id="s3" src="./square.png" width="50">
+                <img id="t3" src="./triangle.png" width="50">
+                <img id="s4" src="./square.png" width="50">
+                <img id="t4" src="./triangle.png" width="50">
+            </div>
+        </div>
+        <div data-depth="0.2">
+            <div class="l1">
+                <img id="e1" src="./ellipse.png" width="40">
+                <img id="s1" src="./square.png" width="50">
+                <img id="t1" src="./triangle.png" width="50">
+              
+            </div>
+        </div>
+      </div>
+        
+      <script type="text/javascript">
+        var playersDead =<%-JSON.stringify(playersDead)%>;
+        var mortalityRate =<%-JSON.stringify(mortalityRate)%>;
+        var currentGame =<%-JSON.stringify(currentGame)%>;
+        $('#mort').html(mortalityRate);
+        $('#dead').html(playersDead);
+        $('#game').html(currentGame);
+        var scene = document.getElementById('scene');
+    var parallaxInstance = new Parallax(scene);
+    </script>
+</body>
+</html>

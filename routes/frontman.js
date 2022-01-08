@@ -148,7 +148,7 @@ router.get("/games", async (req, res) => {
     }
     let playersDead = deathsPerRound.reduce((a, b) => a + b);
 
-    return res.render("frontmanGames", { playersDead, currentGame, mortalityRate })
+    return res.render("games", { data: { deathsPerRound, games, totalPlayers, mortalityRates } })
 });
 
 router.get("/games/next", async (req, res) => {

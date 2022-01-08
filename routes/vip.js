@@ -60,7 +60,7 @@ router.post("/bet", async (req, res) => {
     if (!req.user.bets[currentGame.game_no]) {
         req.user.bets[currentGame.game_no] = []
     }
-    req.user.bets[currentGame.game_no].append(req.body.playerNumber, req.body.betAmount);
+    req.user.bets[currentGame.game_no].append(req.body.playerId, req.body.betAmount);
     await req.user.save();
 
     return res.send("success");

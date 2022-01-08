@@ -37,10 +37,16 @@
 
 <body>
     <nav>
+        <div class="nav-wrap">
         <a href="/frontman" class="nav">Dashboard</a>
         <a href="/frontman/players" class="nav active">Players</a>
         <a href="/frontman/workers" class="nav">Staff</a>
         <a href="/frontman/games" class="nav">Games</a>
+        </div>
+        <div class="user-log" onclick="logout()">
+            <img src="./crown.png">
+            &nbsp; Frontman
+        </div>
     </nav>
 
     <section style="display: flex; justify-content: space-between;">
@@ -296,12 +302,19 @@
             if(found==1)
             selectSearch(elem,i+1);
             else{
+                if (prevSelected) {
+                prevSelected.querySelector('.status-overlay').style.opacity = 0;
+            }
                 $('.no-player').show()
-            $('.user-model').hide();
+                $('.user-model').hide();
             }
         }
 
         function selectSearch(elem,index) {
+            $('.right').animate({
+            scrollTop: $('#'+index).offset().top - $('.right').offset().top + 
+            $('.right').scrollTop()
+            });
             document.getElementById(index).scrollIntoView();
             if (prevSelected) {
                 prevSelected.querySelector('.status-overlay').style.opacity = 0;
@@ -336,6 +349,9 @@
 
         }
 
+        function logout(){
+                window.location.href='/auth/logout';
+            }
 
     </script>
 </body>

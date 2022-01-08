@@ -146,5 +146,19 @@ textarea:focus, input:focus{
     right:170px;
 }
 
+.user-log{
+    color: white;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+}
+
+nav{
+    background-color: #272727;
+    box-shadow: 0px 4px 8px #0C0C0C;
+    padding: 15px 55px;
+    display: flex;
+    justify-content: space-between;
+}
 
 
