@@ -11,7 +11,7 @@ router.use("/", isFrontman);
 router.get("/players", async (req, res) => {
     const players = await Player.find({});
     console.log(players);
-    return res.send("players")
+    return res.render("players",{data: players})
 });
 
 router.post("/player/new",async (req,res) => {

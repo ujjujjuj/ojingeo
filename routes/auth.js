@@ -22,12 +22,12 @@ router.post("/login", async (req, res) => {
 
     let user = await User.findOne({ _id: req.body.username });
     if (!user) {
-        return res.render("login", { error: "user does not exist" });
+        return res.render("login", { error: "User does not exist." });
     }
 
     const hashedPassword = crypto.createHash('sha256').update(req.body.password).digest('hex');
     if (user.password != hashedPassword) {
-        return res.render("login", { error: "incorrect password" });
+        return res.render("login", { error: "Incorrect password" });
     }
 
     res.cookie("auth", req.body.username, { signed: true, maxAge: 1000 * 60 * 60 * 48 });

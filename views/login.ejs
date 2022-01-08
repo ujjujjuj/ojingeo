@@ -14,6 +14,7 @@
  body{
     background-color: #1A1A1A;
     box-sizing: content-box;
+    font-family: 'Oxygen';
 }
 h1{
     text-align: center;
@@ -34,17 +35,21 @@ form{
 }
 
 input[type=text]{
-    padding: 15px 10px;
+    padding: 15px 15px;
     width: 245px;
     border-radius: 6px;
     text-decoration: none;
+    font-family: 'Oxygen';
+
     border: none;
 }
 
 input[type=password]{
-    padding: 15px 10px;
+    padding: 15px 15px;
     width: 245px;
     border-radius: 6px;
+    font-family: 'Oxygen';
+
     margin-top: 15px;
     text-decoration: none;
     border: none;
@@ -60,9 +65,31 @@ input[type=submit]{
     border-radius: 6px;
     color: white;
     padding: 15px 20px;
+    
     font-family: 'Oxygen';
     margin-top: 25px;
-    width: 265px;
+    width: 275px;
+
+}
+
+#error{
+    color: #FF6489;
+    margin-top: 25px;
+    font-size: 12px;
+    text-align: center;
+
+}
+
+#signup{
+    text-align: center;
+    color: white;
+    font-family: 'Oxygen';
+        margin-top: 20px;
+        font-size: 14px;
+
+}
+#signup a{
+    color: white;
 }
     </style>
 </head>
@@ -70,13 +97,15 @@ input[type=submit]{
 <body>
     <h1>Squid Game</h1>
     <form method="post">
-        <input type="text" name="username" placeholder="username" required>
-        <input type="password" name="password" placeholder="password" required>
+        <input type="text" name="username" placeholder="Username" required>
+        <input type="password" name="password" placeholder="Password" required>
         <input type="submit" value="Login">
     </form>
+    <p id="signup" >Don't have an account? <a href="/auth/register">Sign Up</a></p>
     <% if(locals.error){ %>
-        <%= error %>
-    <% } %>
+        <p id="error"> <%= error %></p>
+      <% } %>   
+      
 </body>
 
 </html>

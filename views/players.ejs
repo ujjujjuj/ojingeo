@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <base href="/">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Oxygen:wght@300;400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="./css/style.css">
+    <link rel="stylesheet" href="./css/players.css">
+  
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <style>
+
+.status-overlay{
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    transition: all 0.4s ease;
+    height: 100%;
+    background: rgb(0,0,0);
+    background: linear-gradient(180deg, rgba(0, 0, 0, 0) -204.21%, #FF6489 91.82%);    opacity: 1;
+    z-index: 30;
+    opacity: 0;
+}
+
+    </style>
+</head>
+<body>
+    <nav>
+        <a href="/frontman/home" class="nav">Dashboard</a>
+        <a href="/frontman/home" class="nav active">Players</a>
+        <a href="/frontman/home" class="nav">Staff</a>
+        <a href="/frontman/home" class="nav">Games</a>
+    </nav>
+
+    <section style="display: flex; justify-content: space-between;">
+        <div class="left">
+            <div class="srch">
+                <div class="search-box">
+                    <input oninput="filter(0)" class="name" placeholder="Search players">
+                    <i class="fas fa-search""></i>
+                </div>
+                <button class="create">
+                    Create New Player
+                </button>
+            </div>
+            <p class="no-player">no player selected</p>
+            <div class="user-model">
+                <div class="profile-wrap">
+                    <div class="user-image"></div>
+                    <div class="user-name">
+                        <p id="userId">Player 4210</p>
+                        <div class="gender" style="display: flex; align-items: center;">
+                            <i c></i>
+                            <p>Ishaan Das</p>
+                        </div>
+                        <p><strong>Debt: </strong><span id="debt"></span></p>    
+                    
+                    </div>
+                </div>
+                <h1>Status</h1>
+                <div class="status-wrap">
+                    <div id="status-box">
+                        <div id="statusDot"></div>
+                        <p>Active</p>
+                    </div>
+                    <button onclick="eliminate()" class="elim"><i class="far fa-times-circle"></i><p>Eliminate</p></button>
+                </div>
+            </div>
+
+        </div>
+        <div class="right">
+            <div class="grid">
+                <!-- <div class="player">
+                    <p id="playerId">
+                        4210
+                    </p>
+                    <div class="player-data">
+                        <p class="name">ISHAAN DAS</p>
+                        <p class="click">Click for more</p>
+                    </div>
+                </div>
+                -->
+            </div>
+
+        </div>
+    </section>
+
+    <script type="text/javascript">
+          var list =<%-JSON.stringify(data)%>;
+          list[10].isEliminated=1;
+          $('.grid').empty();
+          $('.user-model').hide();
+          list.forEach((x,n) => {
+              let html;
+              if(x.isEliminated==0)
+               html = `<div class="player" onclick="select(`+n+`,this)" style="    background-image:url(`+x.pfp+`);">
+                <div class="status-overlay"></div>    
+                <div class="elim-overlay"></div>
+                <p id="playerId">
+                        `+x._id+`
+                    </p>
+                    <div class="player-data">
+                        <p class="name">`+x.name+`</p>
+                        <p class="click" >Click for more</p>
+                    </div>
+                </div>`;
+                else
+                 html = `<div class="player" onclick="select(`+n+`,this)" style="    background-image:url(`+x.pfp+`);">
+                <div class="status-overlay"></div>    
+                <div class="elim-overlay" style="opacity:1;"></div>
+                <p id="playerId">
+                        `+x._id+`
+                    </p>
+                    <div class="player-data">
+                        <p class="name">`+x.name+`</p>
+                        <p class="click" >Click for more</p>
+                    </div>
+                </div>`;
+                $('.grid').append(html);
+          });
+        var currentSelected;
+          var prevSelected;
+          function select(id,e){
+            if(prevSelected){
+                prevSelected.querySelector('.status-overlay').style.opacity=0;
+            }
+            let elem = list[id];
+            currentSelected=elem;
+            e.querySelector('.status-overlay').style.opacity=1;
+            $('.user-image').css('background-image', 'url('+elem.pfp+')');
+            $('#userId').html('Player '+elem._id);
+            $('.gender p').html(elem.name);
+            $('#debt').html('₹ '+elem.debt.toLocaleString('en-IN'));
+            if(elem.pfp.includes('/men/'))
+                {$('.gender i').attr('class','fas fa-mars');
+                }
+            else
+                {$('.gender i').attr('class','fas fa-venus');
+                }
+            if(elem.isEliminated==0)
+            {$('#statusDot').css('background-color','#B8FFB7');
+            $('.elim').removeClass('disabled');
+             $('#status-box p').html("Active");
+            }
+            else
+           { 
+               $('#statusDot').css('background-color','#BE4D68');
+             $('#status-box p').html("Eliminated");
+             $('.elim').addClass('disabled');
+            }
+            $('.no-player').hide()
+            $('.user-model').show();
+            prevSelected=e;
+              
+          }
+
+          function eliminate(){
+            $('#statusDot').css('background-color','#BE4D68');
+             $('#status-box p').html("Eliminated");
+             $('.elim').addClass('disabled');
+             prevSelected.querySelector('.elim-overlay').style.opacity=1;
+            $.ajax()
+          }
+    </script>
+</body>
+</html>

@@ -19,12 +19,12 @@
 <body>
     <h1>Squid Game</h1>
     <form method="POST">
-        <input name="accessCode" type="text" required>
+        <input name="accessCode" type="text" placeholder="Access Code" required>
         <input type="submit" value="Proceed">
     </form>
     <% if(locals.error){ %>
-     <p><%= error %></p>   
-    <% } %>
+        <p id="error"> <%= error %></p>
+      <% } %>   
 </body>
 
 </html>
