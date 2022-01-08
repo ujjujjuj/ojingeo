@@ -177,11 +177,28 @@ textarea:focus, input:focus, select:focus{
 }
 
 .no-player{
-    font-family: "Game Of Squids";
     color: white;
-    margin-left: 75px;
+    flex-direction: column;
+    margin-left: 90px;
     font-size: 2vw;
-    margin-top: 250px;
+    justify-content: center;
+    display: flex;
+    align-items: center;
+    margin-top: 150px;
+}
+
+.no-player h1{
+    font-family: "Game Of Squids";
+    font-size: 3.2vw;
+    padding: 0;
+    margin: 0;
+}
+
+.no-player p{
+    margin: 0;
+    margin-top: 30px;
+    font-size: 1.6vw;
+    font-weight: 300;
 }
 
 .user-image{

@@ -35,7 +35,7 @@
         <a href="/frontman" class="nav">Dashboard</a>
         <a href="/frontman/players" class="nav">Players</a>
         <a href="/frontman/workers" class="nav active">Staff</a>
-        <a href="/frontman/game" class="nav">Games</a>
+        <a href="/frontman/games" class="nav">Games</a>
     </nav>
     <div class="header">
         <div class="srch">
@@ -103,17 +103,21 @@
 
         <div class="create-dialog">
             <h1>Create New Staff</h1>
-            <form method="post" action="/" id="create-form">
+            <form method="post" action="/frontman/worker/new" id="create-form">
                 <label for="form-name">Name</label>
                 <input type="text" name="name" id="form-name" placeholder="John Doe" required>
                 <label for="form-designation">Designation</label>
+                <div class="select-wrapper">
                 <select id="form-designation" name="designation" required>
                     <option value="" disabled selected>Select a designation</option>
                     <option value="Manager">Manager</option>
                     <option value="Guard">Guard</option>
                     <option value="Utility">Utility</option>
                 </select>
+                </div>
                 <label for="form-task">Task</label>
+                <div class="select-wrapper">
+
                 <select id="form-task" name="task" required>
                     <option value="" disabled selected>Select a task</option>
                     <option value="Disposal">Disposal</option>
@@ -122,7 +126,8 @@
                     <option value="Patrol">Patrol</option>
                     <option value="Venue Preparation">Venue Preparation</option>
                     <option value="Maintenance">Maintenance</option>
-                </select>            
+                </select>   
+                </div>         
             </form>
             <button type="submit" value="Create" form="create-form">Create Staff</button>
     
@@ -133,9 +138,10 @@
             <div class="desig">
                 <div class="icon"></div>
                 <p>Manager</p></div>
-            <form method="post" action="/" id="edit-form">
-                <input type="text" value='' id="name" hidden>
+            <form method="post" action="/frontman/worker/edit" id="edit-form">
+                <input type="text" value='' id="id" hidden>
                 <label for="form-task">Task</label>
+                <div class="select-wrapper">
                 <select id="form-task" name="task" required>
                     <option value="" disabled >Select a task</option>
                     <option value="Disposal">Disposal</option>
@@ -145,6 +151,7 @@
                     <option value="Venue Preparation">Venue Preparation</option>
                     <option value="Maintenance">Maintenance</option>
                 </select>            
+                </div>
             </form>
             <button type="submit" value="edit" form="edit-form">Save Changes</button>
     
@@ -194,7 +201,7 @@
 
         function openStaff(index){
             let elem = list[index];
-            document.querySelector('.edit-dialog #name').value=elem.name;
+            document.querySelector('.edit-dialog #id').value=elem._id;
             $('.edit-dialog h1').html(elem.name);
             $('.edit-dialog .desig .icon').css('background-image','url('+elem.roleUrl+')');
             $('.edit-dialog .desig p').html(elem.role)
