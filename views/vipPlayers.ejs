@@ -13,7 +13,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Oxygen:wght@300;400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="./css/style.css">
     <link rel="stylesheet" href="./css/players.css">
-    <script src="https://cdn.jsdelivr.net/npm/notyf@3.10.0/notyf.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/notyf@3/notyf.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"
         integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ=="
         crossorigin="anonymous" referrerpolicy="no-referrer"></script>
@@ -38,8 +38,7 @@
 <body>
     <nav>
         <div class="nav-wrap">
-            <a href="/vip" class="nav">Dashboard</a>
-            <a href="/vip/players" class="nav active">Players</a>
+            <a href="/vip/players" class="nav active">Dashboard</a>
             <a href="/vip/games" class="nav">Games</a>
         </div>
         <div class="user-log" onclick="openProfile()">
@@ -82,9 +81,9 @@
                         </div>
                         <div class="status-wrap debt">
                             <h1>Bets Placed</h1>
-                            <p><span style="color: #B8FFB7;">For :</span> <span id="for-bet">$42,000</span></p>
-                            <p id="against"><span style="color: #FF6489;">Against :</span> <span
-                                    id="against-bet">$42,000</span></p>
+                            <p><span style="color: #B8FFB7;">For :</span> ₹ <span id="for-bet">42,000</span></p>
+                            <p id="against"><span style="color: #FF6489;">Against :</span> ₹ <span
+                                    id="against-bet">42,000</span></p>
 
                         </div>
                     </div>
@@ -131,13 +130,19 @@
         </div>
     </div>
 
+    <script src="https://cdn.jsdelivr.net/npm/notyf@3.10.0/notyf.min.js"></script>
     <script type="text/javascript">
-        var notyf = new Notyf();
-        notyf.error('You must fill out the form before moving forward');
-
-        var list =<%-JSON.stringify(data) %>;
+        var list =<%-JSON.stringify(data)%>;
+        var bets =<%-JSON.stringify(betsArr)%>;
         $('.grid').empty();
         $('.bg-overlay').hide();
+        var notyf = new Notyf({
+                position: {
+                    x: 'center',
+                    y: 'bottom',
+                }
+            });
+// Display an error notification
         $('.elim-box').hide();
         $('.user-model').hide();
         list.forEach((x, n) => {
@@ -180,8 +185,22 @@
             $('.user-image').css('background-image', 'url(' + elem.pfp + ')');
             $('#userId').html('Player ' + elem._id);
             $('.gender p').html(elem.name);
-            $('#debt').html('₹ ' + elem.debt.toLocaleString('en-IN'));
-            if (elem.pfp.includes('/men/')) {
+            if(!(Object.keys(bets).length === 0)){
+                console.log('hi')
+                if(bets.hasOwnProperty(elem._id)){
+                    $('#for-bet').html(bets[elem._id][0].toLocaleString('en-IN'));
+                    $('#against-bet').html(bets[elem._id][1].toLocaleString('en-IN'));
+                }
+                else{
+                    $('#for-bet').html(0);
+                    $('#against-bet').html(0);
+                }
+            }    else{
+                    $('#for-bet').html(0);
+                    $('#against-bet').html(0);
+                }
+
+            if (elem.gender=='male') {
                 $('.gender i').attr('class', 'fas fa-mars');
             }
             else {
@@ -196,7 +215,7 @@
                 $('#statusDot').css('background-color', '#BE4D68');
                 $('#status-box p').html("Eliminated");
                 $('.elim').addClass('disabled');
-            }
+            }   
             $('.no-player').hide()
             $('.user-model').show();
             prevSelected = e;
@@ -216,20 +235,27 @@
         }
 
         document.querySelector('.yes').addEventListener('click', () => {
-            if ($('#betAmount').val() > 10000)
+            if ($('#betAmount').val() > 9999)
                 $.post("/vip/bet",
                     {
                         playerId: currentSelected._id,
                         betAmount: $('#betAmount').val() * multiplier
                     },
-                    function (data, status) {
+                    function (response) {
                         $('.bg-overlay').hide();
                         $('.elim-box').hide();
+                        if(response.error){
+                            notyf.error(response.message)
+                        }
+                        else{
+                            notyf.success(response.message)
+                            updateUI($('#betAmount').val() * multiplier);
+                        }
                         $('#betAmount').val('')
 
                     });
-            else {
-                alert('kanjoos');
+            else{
+                notyf.error('Insufficient amount')
             }
         });
         document.querySelector('.bg-overlay').addEventListener('click', () => {
@@ -238,6 +264,23 @@
             $('#betAmount').val('')
 
         });
+
+
+        function updateUI(amt){
+            console.log('hi')
+            let id = currentSelected._id;
+
+            if(amt>0)
+               { 
+                document.getElementById('for-bet').innerHTML = amt.toLocaleString('en-IN')  
+               bets[id]=[amt,0]
+            }
+            else
+               { 
+                document.getElementById('against-bet').innerHTML = (amt*(-1)).toLocaleString('en-IN')  
+               bets[id]=[0,amt*-1]
+               }
+        }
 
         function filter() {
 
@@ -285,7 +328,21 @@
             document.getElementById(index).querySelector('.status-overlay').style.opacity = 1;
             prevSelected = document.getElementById(index);
             currentSelected = elem;
-            currentSelected = elem;
+            if(!(Object.keys(bets).length === 0)){
+                console.log('hi')
+                if(bets.hasOwnProperty(elem._id)){
+                    $('#for-bet').html(bets[elem._id][0].toLocaleString('en-IN'));
+                    $('#against-bet').html(bets[elem._id][1].toLocaleString('en-IN'));
+                }
+                else{
+                    $('#for-bet').html(0);
+                    $('#against-bet').html(0);
+                }
+            }    else{
+                    $('#for-bet').html(0);
+                    $('#against-bet').html(0);
+                }
+
             $('.user-image').css('background-image', 'url(' + elem.pfp + ')');
             $('#userId').html('Player ' + elem._id);
             $('.gender p').html(elem.name);
@@ -316,7 +373,7 @@
         }
 
         function openProfile(){
-            window.location.href='/vip/profile'
+            window.location.href='/vip/'
         }
     </script>
 </body>

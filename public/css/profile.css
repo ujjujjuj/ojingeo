@@ -53,6 +53,7 @@ textarea:focus, input:focus, select:focus{
     font-size: 24px;
     margin-top: 10px;
     font-weight: 600;
+    white-space: nowrap;
 }
 .header{
     display: flex;
@@ -80,7 +81,7 @@ textarea:focus, input:focus, select:focus{
     padding: 7px 10px;
     font-weight: 300;
     overflow: scroll;
-    width: 180px;
+    width: 260px;
     font-size: 20px;
 }
 

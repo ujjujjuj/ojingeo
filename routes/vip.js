@@ -16,7 +16,7 @@ router.use((req, res, next) => {
 
 router.get("/", (req, res) => {
     // console.log(req.user);
-    return res.render("vipDashboard", { money: req.user.money, name: req.user.name, walletAddress: req.user.walletAddress });
+    return res.render("profile", { money: req.user.money, name: req.user._id, walletAddress: req.user.walletAddress });
 });
 
 router.get("/players", async (req, res) => {
@@ -89,8 +89,12 @@ router.post("/bet", async (req, res) => {
     await req.user.save();
     // console.log(req.user.bets);
     return res.json({error:false,message:"Bet placed successfully!"})
+<<<<<<< HEAD
 })
 
+=======
+});
+>>>>>>> 2836a785a46d7b20ea80cf9e2c9565653f647133
 
 
 module.exports = router;
