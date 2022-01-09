@@ -38,8 +38,9 @@
 <body>
     <nav>
         <div class="nav-wrap">
-        <a href="/vip/players" class="nav active">Dashboard</a>
-        <a href="/vip/games" class="nav">Games</a>
+            <a href="/vip" class="nav">Dashboard</a>
+            <a href="/vip/players" class="nav active">Players</a>
+            <a href="/vip/games" class="nav">Games</a>
         </div>
         <div class="user-log" onclick="openProfile()">
             <img src="./user-2.png">
@@ -55,9 +56,9 @@
                     <i class="fas fa-search""></i>
                 </div>
                 </div>
-                <div class="no-player">
-                    <h1>Squid Game</h1>
-                    <p>Select a player for more options.</p>
+                <div class=" no-player">
+                        <h1>Squid Game</h1>
+                        <p>Select a player for more options.</p>
                 </div>
                 <div class="user-model" style="margin-top: 70px;">
                     <div class="profile-wrap">
@@ -72,7 +73,7 @@
                         </div>
                     </div>
                     <div class="ui-wrap" style="align-items: flex-start;">
-                        <div class="status-wrap" >
+                        <div class="status-wrap">
                             <h1>Status</h1>
                             <div id="status-box">
                                 <div id="statusDot"></div>
@@ -82,18 +83,20 @@
                         <div class="status-wrap debt">
                             <h1>Bets Placed</h1>
                             <p><span style="color: #B8FFB7;">For :</span> <span id="for-bet">$42,000</span></p>
-                            <p id="against"><span style="color: #FF6489;">Against :</span> <span id="against-bet">$42,000</span></p>
+                            <p id="against"><span style="color: #FF6489;">Against :</span> <span
+                                    id="against-bet">$42,000</span></p>
 
                         </div>
                     </div>
-                    <div class="button-wrap" style="display: flex; align-items: center; margin-top: 50px;">  <button onclick="bet(1)" style="margin-top: 0;" class="elim">
-                        <p>Bet For</p>
-                    </button>
-                    <button onclick="bet(-1)" style="margin-top: 0; margin-left: 25px;" class="elim">
-                        <p>Bet Against</p>
-                    </button>
-                </div>
-                  
+                    <div class="button-wrap" style="display: flex; align-items: center; margin-top: 50px;"> <button
+                            onclick="bet(1)" style="margin-top: 0;" class="elim">
+                            <p>Bet For</p>
+                        </button>
+                        <button onclick="bet(-1)" style="margin-top: 0; margin-left: 25px;" class="elim">
+                            <p>Bet Against</p>
+                        </button>
+                    </div>
+
 
                 </div>
 
@@ -116,11 +119,12 @@
     </section>
     <div class="bg-overlay"></div>
     <div class="elim-box" style="width: 40%;">
-        <p style="font-size:23px; font-weight: 600; margin-top: 30px; margin-bottom: 10px;">Betting <span id="bet-type">for</span> Player <span style="color: #FF6489;" id="bet-player-id">4210</span></p>
+        <p style="font-size:23px; font-weight: 600; margin-top: 30px; margin-bottom: 10px;">Betting <span
+                id="bet-type">for</span> Player <span style="color: #FF6489;" id="bet-player-id">4210</span></p>
         <form action="/vip/bet" id="bet-form">
             <label for="form-name">Enter Amount</label>
             <input type="text" name="playerId" id="playerId" hidden>
-            <input step="10000" type="number" name="betAmount" id="betAmount" placeholder="₹ 42,00,00,000" required>
+            <input step="10000" type="number" name="betAmount" id="betAmount" placeholder="₹ 42,00,000" required>
         </form>
         <div class="buttons" style="margin-top: 30px;">
             <button class="yes" style="padding: 13px 35px; font-family: 'Oxygen'; font-size: 15px;">Place Bet</button>
@@ -131,7 +135,7 @@
         var notyf = new Notyf();
         notyf.error('You must fill out the form before moving forward');
 
-        var list =<%-JSON.stringify(data)%>;
+        var list =<%-JSON.stringify(data) %>;
         $('.grid').empty();
         $('.bg-overlay').hide();
         $('.elim-box').hide();
@@ -139,7 +143,7 @@
         list.forEach((x, n) => {
             let html;
             if (x.isEliminated == 0)
-                html = `<div class="player" id="`+x._id+`" onclick="select(` + n + `,this)" style="    background-image:url(` + x.pfp + `);">
+                html = `<div class="player" id="` + x._id + `" onclick="select(` + n + `,this)" style="    background-image:url(` + x.pfp + `);">
                 <div class="status-overlay"></div>    
                 <div class="elim-overlay"></div>
                 <p id="playerId">
@@ -151,7 +155,7 @@
                     </div>
                 </div>`;
             else
-                html = `<div class="player"  id="`+x._id+`"  onclick="select(` + n + `,this)" style="    background-image:url(` + x.pfp + `);">
+                html = `<div class="player"  id="` + x._id + `"  onclick="select(` + n + `,this)" style="    background-image:url(` + x.pfp + `);">
                 <div class="status-overlay"></div>    
                 <div class="elim-overlay" style="opacity:1;"></div>
                 <p id="playerId">
@@ -200,31 +204,31 @@
         }
         var multiplier;
         function bet(n) {
-            multiplier=n;
+            multiplier = n;
             $('#bet-player-id').html(currentSelected._id);
-            if(multiplier==1)
-            $('#bet-type').html('for');
+            if (multiplier == 1)
+                $('#bet-type').html('for');
             else
-            $('#bet-type').html('against');
+                $('#bet-type').html('against');
             $('.bg-overlay').show();
             $('.elim-box').show();
 
         }
 
         document.querySelector('.yes').addEventListener('click', () => {
-            if($('#betAmount').val()>10000)
-            $.post("/vip/bet",
-                {
-                    playerId: currentSelected._id,
-                    betAmount: $('#betAmount').val()*multiplier
-                },
-                function (data, status) {
-                    $('.bg-overlay').hide();
-                    $('.elim-box').hide();
-                    $('#betAmount').val('')
+            if ($('#betAmount').val() > 10000)
+                $.post("/vip/bet",
+                    {
+                        playerId: currentSelected._id,
+                        betAmount: $('#betAmount').val() * multiplier
+                    },
+                    function (data, status) {
+                        $('.bg-overlay').hide();
+                        $('.elim-box').hide();
+                        $('#betAmount').val('')
 
-                });
-            else{
+                    });
+            else {
                 alert('kanjoos');
             }
         });
@@ -235,44 +239,43 @@
 
         });
 
-        function filter(){
-            
+        function filter() {
+
             let elem;
             let string = document.querySelector('.search-name').value;
-            if(string.length==0){
+            if (string.length == 0) {
                 $('.no-player').show();
 
 
                 prevSelected.querySelector('.status-overlay').style.opacity = 0;
 
-                 $('.user-model').hide();
-                 return;
+                $('.user-model').hide();
+                return;
             }
-            let found=0;
+            let found = 0;
             let i;
-            for( i=0;i<list.length;i++){
-                if(list[i].name.toUpperCase().includes(string.toUpperCase()))
-                    {
-                        elem=list[i];
-                        found=1;
-                        break;
-                    }
+            for (i = 0; i < list.length; i++) {
+                if (list[i].name.toUpperCase().includes(string.toUpperCase())) {
+                    elem = list[i];
+                    found = 1;
+                    break;
+                }
             }
-            if(found==1)
-            selectSearch(elem,i+1);
-            else{
+            if (found == 1)
+                selectSearch(elem, i + 1);
+            else {
                 if (prevSelected) {
-                prevSelected.querySelector('.status-overlay').style.opacity = 0;
-            }
+                    prevSelected.querySelector('.status-overlay').style.opacity = 0;
+                }
                 $('.no-player').show()
                 $('.user-model').hide();
             }
         }
 
-        function selectSearch(elem,index) {
+        function selectSearch(elem, index) {
             $('.right').animate({
-            scrollTop: $('#'+index).offset().top - $('.right').offset().top + 
-            $('.right').scrollTop()
+                scrollTop: $('#' + index).offset().top - $('.right').offset().top +
+                    $('.right').scrollTop()
             });
 
             if (prevSelected) {
@@ -280,7 +283,7 @@
             }
             console.log(index)
             document.getElementById(index).querySelector('.status-overlay').style.opacity = 1;
-            prevSelected =  document.getElementById(index);
+            prevSelected = document.getElementById(index);
             currentSelected = elem;
             currentSelected = elem;
             $('.user-image').css('background-image', 'url(' + elem.pfp + ')');
@@ -308,9 +311,9 @@
 
         }
 
-        function logout(){
-                window.location.href='/auth/logout';
-            }
+        function logout() {
+            window.location.href = '/auth/logout';
+        }
 
         function openProfile(){
             window.location.href='/vip/profile'

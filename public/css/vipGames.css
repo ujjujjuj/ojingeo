@@ -99,6 +99,7 @@ nav{
 }
 .game:hover{
     background-color: #292929;
+    cursor: pointer;
 }
 .game > div{
     display: flex;
@@ -119,4 +120,60 @@ nav{
 }
 .gameStatus{
     font-size: 20px;
+}
+
+.bg-overlay{
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 10;
+    background-color: #00000080;
+    cursor: pointer;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}
+.popup-box{
+    z-index: 999;
+    cursor:default;
+    border-radius: 10px;
+    width:700px;
+    background-color: #363636;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 20px 80px;
+}
+
+.popup-title{
+    font-size: 28px;
+    font-weight: 600;
+    margin: 40px 0;
+}
+.popup-desc{
+    text-align: center;
+    margin-bottom: 30px;
+}
+.popup-stats{
+    display: flex;
+    gap: 70px;
+    margin-bottom: 40px;
+}
+.popup-stats > div{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    
+}
+.popup-box svg{
+    width: 60px;
+}
+.popup-stat-num{
+    font-size: 28px;
+    margin:10px 0;
 }
