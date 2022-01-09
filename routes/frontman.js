@@ -6,6 +6,7 @@ const Worker = require("../models/Worker");
 const Game = require("../models/Game");
 const fs = require("fs");
 const User = require("../models/User");
+const { createTransaction } = require("../helpers/bitcoinHelper")
 
 const router = express.Router();
 
@@ -180,5 +181,22 @@ router.get("/games/next", async (req, res) => {
 
     return res.redirect("/frontman/games");
 });
+
+router.get("/settlepayments", async (req, res) => {
+    const users = await User.find({ isFrontman: false });
+    let paymentsList = [];
+    for (let user of users) {
+        if (user.money <= 0) continue;
+
+        paymentsList.push([user.walletAddress, 1000]) // TODO : change this to user.money
+        user.money = 0;
+        await user.save()
+    }
+
+    const resp = await createTransaction(paymentsList);
+    console.log(resp);
+
+    return res.redirect("/frontman")
+})
 
 module.exports = router;
