@@ -16,7 +16,7 @@ router.use((req, res, next) => {
 
 router.get("/", (req, res) => {
     // console.log(req.user);
-    return res.render("vipDashboard");
+    return res.render("profile", { money: req.user.money, name: req.user._id, walletAddress: req.user.walletAddress });
 });
 
 router.get("/players", async (req, res) => {
@@ -81,13 +81,15 @@ router.post("/bet", async (req, res) => {
     if (!req.user.bets[currentGame.game_no]) {
         req.user.bets[currentGame.game_no] = {}
     }
+    if(req.user.bets[currentGame.game_no][req.body.playerId]){
+        return res.json({error:true,message:"You have already placed a bet on this player"});
+    }
     req.user.bets[currentGame.game_no][req.body.playerId] = parseInt(req.body.betAmount);
     req.user.markModified('bets');
     await req.user.save();
     // console.log(req.user.bets);
-    return res.send("success");
-})
-
+    return res.json({error:false,message:"Bet placed successfully!"})
+});
 
 
 module.exports = router;

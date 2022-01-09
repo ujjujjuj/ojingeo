@@ -37,9 +37,14 @@
 
 <body>
     <nav>
-        <a href="/vip/" class="nav">Dashboard</a>
-        <a href="/vip/players" class="nav">Players</a>
-        <a href="/vip/games" class="nav active">Games</a>
+        <div class="nav-wrap">
+        <a href="/vip/players" class="nav">Dashboard</a>
+        <a href="/vip/games" class="nav">Games</a>
+        </div>
+        <div class="user-log active" onclick="openProfile()">
+            <img src="./user-2-red.png">
+            &nbsp; Profile
+        </div>
     </nav>
 
     <section style="display: flex; justify-content: space-between;flex-direction:column">
@@ -175,6 +180,10 @@
         }
 
         renderData(data.games)
+
+        function openProfile(){
+            window.location.href='/vip'
+        }
     </script>
 
 </body>

@@ -12,10 +12,16 @@
     <link href="https://fonts.googleapis.com/css2?family=Oxygen:wght@300;400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="./css/style.css">
     <link rel="stylesheet" href="./css/profile.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/parallax/3.1.0/parallax.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"
         integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ=="
         crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-</head>
+    <style>
+        #scene{
+            opacity: 0.8;
+        }
+    </style>
+    </head>
 <body>
     <nav>
         <div class="nav-wrap">
@@ -23,7 +29,7 @@
         <a href="/vip/games" class="nav">Games</a>
         </div>
         <div class="user-log active" onclick="openProfile()">
-            <img src="./user-2.png">
+            <img src="./user-2-red.png">
             &nbsp; Profile
         </div>
     </nav>
@@ -41,9 +47,8 @@
                 <div class="label">
                     <i class="fas fa-wallet"></i>&nbsp; Connected Wallet
                 </div>
-                <div class="val" id="wallet" >
-                    https://www.google.com/fbwaubfnkjawnfakjn
-                </div>
+                <a class="val" href="" id="wallet" target="_blank">
+                </a>
             </div>
         </div>
         <div class="logout" onclick="logout()">
@@ -51,7 +56,7 @@
         </div>
     </div>
 
-    <div class="content">
+    <div class="content" style="display: flex;">
        <h1>You have to pay the following amount: </h1> 
        <h2>$ 42,30400,3004</h2> 
        <p>Scan the QR Code to pay with your Bitcoin wallet. </p>
@@ -62,10 +67,60 @@
     <div class="blank">
         Squid Game
     </div>
+
+    <div id="scene" style="top: 100px;">
+        <div data-depth="0.5">
+            <div class="l1">
+                <img id="e2" src="../ellipse.png" width="50">
+                <img id="s2" src="../square.png" width="50">
+                <img id="t2" src="../triangle.png" width="50">
+                <img id="e4" src="../ellipse.png" width="50">
+                <img id="e3" src="../ellipse.png" width="40">
+                <img id="s3" src="../square.png" width="50">
+                <img id="t3" src="../triangle.png" width="50">
+                <img id="s4" src="../square.png" width="50">
+                <img id="t4" src="../triangle.png" width="50">
+            </div>
+        </div>
+        <div data-depth="0.2">
+            <div class="l1">
+                <img id="e1" src="../ellipse.png" width="40">
+                <img id="s1" src="../square.png" width="50">
+                <img id="t1" src="../triangle.png" width="50">
+              
+            </div>
+        </div>
+      </div>
+
     <script type="text/javascript">
-        function logout(){
-            window.location.href='/auth/logout'
-        }
+                $('.content').hide()
+                var money =<%-JSON.stringify(money)%>;
+                var userName =<%-JSON.stringify(name)%>;
+                var walletAddress =<%-JSON.stringify(walletAddress)%>;
+                var scene = document.getElementById('scene');
+      var parallaxInstance = new Parallax(scene);
+                if(money<0)
+                {
+                    console.log("hello")
+                    $('.content h2').html('₹ '+(money*(-1)).toLocaleString('en-IN'))
+                    $('.content').show()
+                    $('.blank').hide()
+                    $('#scene').hide()
+                }else if(money>0){
+                    console.log("hello")
+                    $('.content h1').html("You will recieve the following amount: " );
+                    $('.content h2').html('₹ '+(money).toLocaleString('en-IN'))
+                    $('.content p').hide()
+                    $('.content img').hide()
+                    $('.content').show()
+                    $('.blank').hide()
+                }
+                $('#codename').html(userName);
+                $('#wallet').html('https://www.blockchain.com/btc-testnet/address/'+walletAddress);
+                document.getElementById('wallet').href='https://www.blockchain.com/btc-testnet/address/'+walletAddress;
+                function logout(){
+                    window.location.href='/auth/logout'
+                }
     </script>
 </body>
 </html>

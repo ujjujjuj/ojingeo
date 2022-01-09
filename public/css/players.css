@@ -337,7 +337,6 @@ textarea:focus, input:focus, select:focus{
     z-index: 30;
     opacity: 0;
     background-size: contain;
-
 }
 
 .elim-box{
@@ -350,7 +349,7 @@ textarea:focus, input:focus, select:focus{
     flex-direction: column;
     justify-content: center;
     align-items: center;   
-    padding-bottom: 40px;
+    padding-bottom: 30px;
     padding-top: 10px;
     z-index: 100;
     border-radius: 6px;
