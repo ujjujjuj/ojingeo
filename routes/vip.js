@@ -89,12 +89,7 @@ router.post("/bet", async (req, res) => {
     await req.user.save();
     // console.log(req.user.bets);
     return res.json({error:false,message:"Bet placed successfully!"})
-<<<<<<< HEAD
-})
-
-=======
 });
->>>>>>> 2836a785a46d7b20ea80cf9e2c9565653f647133
 
 
 module.exports = router;

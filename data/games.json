@@ -69,6 +69,12 @@
             "game_no": 6,
             "name": "Squid Game",
             "description": "The game is played by drawing a square, a triangle and two circles on the ground (the same shapes seen throughout the whole series) and has two teams trying to invade each other’s space. The tricky part is: you can’t touch any lines and must hop on one foot on most areas. Of course, players will try their best to make you fall along the way."
+        },
+        {
+            "uuid": "9ecb1ba7-1ae3-4a32-81c1-bc767cfbb023",
+            "game_no": 7,
+            "name": "Ended",
+            "description": "The games have ended"
         }
     ]
 }

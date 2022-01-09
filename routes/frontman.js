@@ -16,6 +16,11 @@ router.use("/", isFrontman);
 router.get("/", async (req, res) => {
     const currentGame = await Game.findOne({ isCurrentGame: true });
     const players = await Player.find({}, { isEliminated: 1 });
+    const users = await User.find({ isFrontman: false });
+    let payment = 0;
+    for (let user of users) {
+        payment -= user.money // TODO : change this to user.money
+    }
 
     // if (!currentGame) currentGame = { game_no: 0 };
 
@@ -37,7 +42,7 @@ router.get("/", async (req, res) => {
     let playersDead = deathsPerRound.reduce((a, b) => a + b);
     let playersLeft = totalPlayers - playersDead;
 
-    return res.render("dash", { currentGame, playersLeft, playersDead, mortalityRates });
+    return res.render("dash", { currentGame, playersLeft, playersDead, mortalityRates,payment });
 
 });
 

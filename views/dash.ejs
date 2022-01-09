@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Dashboard</title>
     <base href="/">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css" rel="stylesheet">
@@ -88,6 +88,18 @@
             <div class="download">
                 <i class="far fa-arrow-alt-circle-down"></i> Download CSV Report
             </div>
+            <div class="dash-box" style="margin-top: 30px;">
+                <div class="box-wrap">
+                    <div class="title"> <i class="fas fa-rupee-sign"></i>&nbsp; &nbsp; Amount to be settled</div>
+                    <p><%= payment.toLocaleString('en-IN') %></p>
+                </div>
+            </div>
+            <a href="/frontman/settlepayments" style="text-decoration: none;">
+            <div class="download" >
+                <i class="fab fa-bitcoin"></i> Settle Payments
+            </div>
+            
+        </a>
         </div>
     </div>
     
@@ -181,6 +193,9 @@
                 }
             }
             }
+        });
+        document.querySelector('.download').addEventListener('click',()=>{
+            document.getElementById('download-csv').click();
         });
         document.querySelector('.download').addEventListener('click',()=>{
             document.getElementById('download-csv').click();
