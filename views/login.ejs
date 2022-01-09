@@ -100,9 +100,9 @@ input[type=submit]{
 <body>
     <h1>Squid Game</h1>
     <form method="post">
-        <input type="text" name="username" placeholder="Username" required>
-        <input type="password" name="password" placeholder="Password" required>
-        <input type="submit" value="Login">
+        <input type="text" id="username" oninput="check()" name="username" placeholder="Username" required>
+        <input type="password" id="password" oninput="check()" name="password" placeholder="Password" required>
+       <input id="submit" type="submit" value="Login">
     </form>
     <p id="signup" >Don't have an account? <a href="/auth/register">Sign Up</a></p>
     <div id="scene">
@@ -135,6 +135,16 @@ input[type=submit]{
       <script>
         var scene = document.getElementById('scene');
     var parallaxInstance = new Parallax(scene);
+    document.getElementById('submit').style.opacity=0.6;
+            document.getElementById('submit').style.pointerEvents='none'
+
+            function check(){
+                if(
+                document.getElementById('username').value.length>5 &&
+                document.getElementById('password').value.length>4)
+               { document.getElementById('submit').style.opacity=1;
+               document.getElementById('submit').style.pointerEvents='all' }
+            }
     </script>
 </body>
 

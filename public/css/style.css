@@ -11,6 +11,7 @@
     font-display: swap;
 }
 
+
 @font-face {
     font-family: 'dig';
     src: url('fonts/Digital-7.woff2') format('woff2'),
@@ -162,3 +163,23 @@ nav{
 }
 
 
+/* width */
+::-webkit-scrollbar {
+    width: 8px;
+  }
+  
+  /* Track */
+  ::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  
+  /* Handle */
+  ::-webkit-scrollbar-thumb {
+    background: rgb(121, 121, 121);
+  }
+  
+  /* Handle on hover */
+  ::-webkit-scrollbar-thumb:hover {
+    background: #555;
+  }

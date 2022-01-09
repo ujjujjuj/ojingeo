@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <base href="/">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Oxygen:wght@300;400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="./css/style.css">
+    <link rel="stylesheet" href="./css/profile.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"
+        integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+</head>
+<body>
+    <nav>
+        <div class="nav-wrap">
+        <a href="/vip/players" class="nav">Dashboard</a>
+        <a href="/vip/games" class="nav">Games</a>
+        </div>
+        <div class="user-log active" onclick="openProfile()">
+            <img src="./user-2.png">
+            &nbsp; Profile
+        </div>
+    </nav>
+    <div class="header">
+        <div class="holder-wrap">
+            <div class="holder">
+                <div class="label">
+                    <i class="far fa-user"></i>&nbsp; Codename
+                </div>
+                <div class="val" id="codename">
+                    mrbrightside
+                </div>
+            </div>
+            <div class="holder" style="margin-left:120px ;">
+                <div class="label">
+                    <i class="fas fa-wallet"></i>&nbsp; Connected Wallet
+                </div>
+                <div class="val" id="wallet" >
+                    https://www.google.com/fbwaubfnkjawnfakjn
+                </div>
+            </div>
+        </div>
+        <div class="logout" onclick="logout()">
+            Logout &nbsp;<i class="fas fa-sign-out-alt"></i>
+        </div>
+    </div>
+
+    <div class="content">
+       <h1>You have to pay the following amount: </h1> 
+       <h2>$ 42,30400,3004</h2> 
+       <p>Scan the QR Code to pay with your Bitcoin wallet. </p>
+
+       <img src="https://chart.googleapis.com/chart?chs=250x250&cht=qr&chl=msfHVBDXPM7aww7FXr2xAXUWexHtcJnC71" width="120">
+    </div>
+   
+    <div class="blank">
+        Squid Game
+    </div>
+    <script type="text/javascript">
+        function logout(){
+            window.location.href='/auth/logout'
+        }
+    </script>
+</body>
+</html>

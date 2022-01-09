@@ -59,9 +59,11 @@ textarea:focus, input:focus, select:focus{
 .dash-box p{
     color: #FF6489;
     margin: 0;
-    margin-top: 10px;
+    margin-top: 15px;
     font-size: 24px;
-    font-family: 'Game Of Squids';
+    font-family: 'Oxygen';
+
+    font-weight: 600;
 }
 
 .dash-box{

@@ -2,6 +2,7 @@ html {
     scroll-behavior: smooth;
   }
 body{
+    overflow: hidden;
     margin: 0;
     padding: 0;
     font-family: 'Oxygen';
@@ -81,7 +82,8 @@ textarea:focus, input:focus, select:focus{
 }
 
 .right{
-    overflow: auto;
+    overflow: overlay;
+    overflow-x: hidden;
     height: 93vh;
 }
 .grid{
@@ -213,7 +215,7 @@ textarea:focus, input:focus, select:focus{
 
 .user-model{
     margin-left: 75px; 
-    margin-top: 100px;
+    margin-top: 80px;
 }
 
 .profile-wrap{

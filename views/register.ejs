@@ -102,10 +102,10 @@
 <body>
     <h1>Squid Game</h1>
     <form method="post">
-        <input type="text" name="username" placeholder="Username" required>
-        <input type="password" name="password" placeholder="Password" required>
-        <input type="text" style="margin-top:15px;" name="walletAddress" placeholder="Bitcoin Address" required>
-        <input type="submit" value="Register">
+        <input type="text" id="username" oninput="check()" name="username" placeholder="Username" required>
+        <input type="password" id="password" oninput="check()" name="password" placeholder="Password" required>
+        <input type="text" id="wallet" oninput="check()" style="margin-top:15px;" name="walletAddress" placeholder="Bitcoin Wallet Address" required>
+        <input type="submit" id="submit" value="Register">
     </form>
 
         <p id="signup" >Already have an account? <a href="/auth/login">Login</a></p>
@@ -141,6 +141,17 @@
             <script>
                 var scene = document.getElementById('scene');
             var parallaxInstance = new Parallax(scene);
+            document.getElementById('submit').style.opacity=0.6;
+            document.getElementById('submit').style.pointerEvents='none'
+
+            function check(){
+                if(
+                document.getElementById('wallet').value.length>5 &&
+                document.getElementById('username').value.length>5 &&
+                document.getElementById('password').value.length>4)
+               { document.getElementById('submit').style.opacity=1;
+               document.getElementById('submit').style.pointerEvents='all' }
+            }
             </script>
 
 </body>

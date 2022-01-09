@@ -38,14 +38,12 @@
 <body>
     <nav>
         <div class="nav-wrap">
-        <a href="/frontman" class="nav">Dashboard</a>
-        <a href="/frontman/players" class="nav active">Players</a>
-        <a href="/frontman/workers" class="nav">Staff</a>
-        <a href="/frontman/games" class="nav">Games</a>
+        <a href="/vip/players" class="nav active">Dashboard</a>
+        <a href="/vip/games" class="nav">Games</a>
         </div>
-        <div class="user-log" onclick="logout()">
+        <div class="user-log" onclick="openProfile()">
             <img src="./user-2.png">
-            &nbsp; VIP
+            &nbsp; Profile
         </div>
     </nav>
 
@@ -122,7 +120,7 @@
         <form action="/vip/bet" id="bet-form">
             <label for="form-name">Enter Amount</label>
             <input type="text" name="playerId" id="playerId" hidden>
-            <input step="10,000" type="number" name="betAmount" id="betAmount" placeholder="₹ 42,00,00,000" required>
+            <input step="10000" type="number" name="betAmount" id="betAmount" placeholder="₹ 42,00,00,000" required>
         </form>
         <div class="buttons" style="margin-top: 30px;">
             <button class="yes" style="padding: 13px 35px; font-family: 'Oxygen'; font-size: 15px;">Place Bet</button>
@@ -314,6 +312,9 @@
                 window.location.href='/auth/logout';
             }
 
+        function openProfile(){
+            window.location.href='/vip/profile'
+        }
     </script>
 </body>
 
