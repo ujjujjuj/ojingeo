@@ -161,4 +161,16 @@ nav{
     justify-content: space-between;
 }
 
-
+::-webkit-scrollbar {
+    width: 0.6vw;
+  }
+  ::-webkit-scrollbar-track {
+    background: #363636;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: #ff6489;
+    border-radius: 2px;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: #ff6489b0;
+  }

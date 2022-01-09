@@ -36,12 +36,12 @@
     <div class="cards">
         <div class="card">
             <img src="./mortality.svg" width="40" alt="">
-            <h1 id="mort">97%</p>
+            <h1 id="mort">97%</h1>
             <p>Mortality Rate</p>
         </div>
         <div class="card" style="margin-left: 50px;">
             <img src="./2user.svg" width="40" alt="">
-            <h1 id="dead">97</p>
+            <h1 id="dead">97</h1>
             <p>Players Elimiminated</p>
         </div>
     </div>
@@ -75,12 +75,12 @@
       </div>
         
       <script type="text/javascript">
-        var playersDead =<%-JSON.stringify(playersDead)%>;
-        var mortalityRate =<%-JSON.stringify(mortalityRate)%>;
-        var currentGame =<%-JSON.stringify(currentGame)%>;
-        $('#mort').html(mortalityRate);
-        $('#dead').html(playersDead);
-        $('#game').html(currentGame);
+        var playersDead = <%-JSON.stringify(playersDead)%>;
+        var mortalityRate = <%-JSON.stringify(mortalityRate)%>;
+        var currentGame = <%-JSON.stringify(currentGame)%>;
+        document.getElementById('mort').innerHTML = mortalityRate[currentGame.game_no - 1] + "%";
+        document.getElementById('dead').innerHTML = playersDead;
+        document.getElementById('game').innerHTML = `Game ${currentGame.game_no}: ${currentGame.name}`;
         var scene = document.getElementById('scene');
     var parallaxInstance = new Parallax(scene);
     </script>
