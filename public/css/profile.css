@@ -89,7 +89,6 @@ textarea:focus, input:focus, select:focus{
     display: flex; 
     margin-top: 80px;
     align-items: center;
-    display: none;
     justify-content: center;
     flex-direction: column;
 }

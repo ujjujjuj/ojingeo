@@ -4,10 +4,10 @@ const User = require("./models/User.js");
 const Player = require("./models/Player.js");
 const Game = require("./models/Game.js");
 const Worker = require("./models/Worker.js");
+const res = require("express/lib/response");
 
-const initDatabase = async () => {
+const initDatabase = async (callback) => {
     console.log("initializing database...");
-
     let admin = new User({
         _id: "frontman",
         password: crypto.createHash('sha256').update(process.env.FRONTMAN_PASS).digest('hex'),
@@ -15,6 +15,12 @@ const initDatabase = async () => {
     });
     await admin.save();
 
+    let vip = new User({
+        _id: "vipvip",
+        password: crypto.createHash('sha256').update(process.env.VIP_PASS).digest('hex'),
+        walletAddress: process.env.VIP_WALLET
+    })
+    await vip.save();
     const players = require("./data/players.json")
     for (let i = 0; i < players.rows.length; i++) {
         let firstName = players.rows[i].name.split(" ")[0];
@@ -43,13 +49,23 @@ const initDatabase = async () => {
     }
 
     console.log("done");
+    
 }
 
+const resetDatabase = (callback)=>{
+    mongoose.connection.db.dropDatabase().then(()=>{
+        callback();
+    });
+};
 
-module.exports = callback => {
+
+module.exports.callBack = callback => {
     mongoose.connect(process.env.NODE_ENV == "production" ? process.env.DB_URL : "mongodb://localhost:27017/ojingeo", async () => {
         let admin = await User.findOne({ _id: "frontman" });
         if (!admin) await initDatabase();
         callback();
     });
 }
+
+module.exports.reset = resetDatabase;
+module.exports.init = initDatabase;

@@ -7,7 +7,7 @@ const Game = require("../models/Game");
 const fs = require("fs");
 const User = require("../models/User");
 const { createTransaction } = require("../helpers/bitcoinHelper")
-
+const {reset,init} = require('../db')
 const router = express.Router();
 
 router.use("/", isLoggedIn);
@@ -168,7 +168,13 @@ router.get("/games/next", async (req, res) => {
     if (nextGame) {
         nextGame.isCurrentGame = true;
         await nextGame.save();
-    }
+    } else{
+      reset(async ()=>{
+          await init();
+          res.redirect('/');
+      });
+      return;
+    }   
 
     // process bets
     for (let user of users) {
