@@ -79,7 +79,7 @@
     </div>
 
     <script>
-        const data = <%- JSON.stringify(data) %>;
+        const data = <%-JSON.stringify(data)%>;
         $('.bg-overlay').hide()
         document.querySelector(".bg-overlay").addEventListener('click', e => {
             if (e.target === e.currentTarget) $('.bg-overlay').hide()
