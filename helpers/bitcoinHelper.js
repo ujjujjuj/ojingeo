@@ -64,23 +64,22 @@ const main = async () => {
     const vipPrivateKey = bitcore.PrivateKey.fromWIF(process.env.VIP_BTC_WIF)
     const vipAddress = vipPrivateKey.toAddress();
     console.log(`VIP Address: ${vipAddress.toString("base64")}`);
-    return;
+    // return;
     const uxtos = await getUtxos(vipAddress);
+    console.log(uxtos);
 
     tx = new bitcore.Transaction(uxtos);
     tx.from(uxtos);
-    const satoshiFactor = await getSatoshiFactor();
 
-    tx.to(frontmanAddress, 1000)    // sends 1000 satoshis to the frontmans address
-    tx.fee(1000)
+    tx.to(frontmanAddress, 2000)    // sends 1000 satoshis to the frontmans address
+    // tx.fee(5000)
     tx.change(vipAddress);
     tx.sign(vipPrivateKey);
 
-    console.log(tx.toObject());
+    console.log(`${tx.serialize().length / 2} bytes`);
 
-    console.log(await broadcast(tx.serialize()));
+    // console.log(await broadcast(tx.serialize()));
 
-    // console.log(await createTransaction([[vipAddress, 1000]]));
 
 }
 

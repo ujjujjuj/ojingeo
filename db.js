@@ -4,9 +4,8 @@ const User = require("./models/User.js");
 const Player = require("./models/Player.js");
 const Game = require("./models/Game.js");
 const Worker = require("./models/Worker.js");
-const res = require("express/lib/response");
 
-const initDatabase = async (callback) => {
+const initDatabase = async () => {
     console.log("initializing database...");
     let admin = new User({
         _id: "frontman",
@@ -52,20 +51,16 @@ const initDatabase = async (callback) => {
     
 }
 
-const resetDatabase = (callback)=>{
-    mongoose.connection.db.dropDatabase().then(()=>{
-        callback();
-    });
+module.exports.resetDatabase = async () => {
+    await mongoose.connection.db.dropDatabase();
+    await initDatabase()
 };
 
 
-module.exports.callBack = callback => {
+module.exports.start = callback => {
     mongoose.connect(process.env.NODE_ENV == "production" ? process.env.DB_URL : "mongodb://localhost:27017/ojingeo", async () => {
         let admin = await User.findOne({ _id: "frontman" });
         if (!admin) await initDatabase();
         callback();
     });
 }
-
-module.exports.reset = resetDatabase;
-module.exports.init = initDatabase;
